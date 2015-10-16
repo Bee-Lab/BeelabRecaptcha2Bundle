@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="beelab_recaptcha2.google_recaptcha" class="ReCaptcha\ReCaptcha">
+            <argument>%beelab_recaptcha2.secret%</argument>
+        </service>
+        <service id="beelab_recaptcha2.type" class="Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType">
+            <argument>%beelab_recaptcha2.site_key%</argument>
+            <tag name="form.type" alias="beelab_recaptcha2" />
+        </service>
+        <service id="beelab_recaptcha2.verifier" class="Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier">
+            <argument type="service" id="beelab_recaptcha2.google_recaptcha" />
+            <argument type="service" id="request_stack" />
+            <argument>%beelab_recaptcha2.enabled%</argument>
+        </service>
+        <service id="beelab_recaptcha2.validator" class="Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2Validator">
+            <argument type="service" id="beelab_recaptcha2.verifier" />
+            <tag name="validator.constraint_validator" alias="recaptcha2" />
+        </service>
+    </services>
+
+</container>

@@ -1,0 +1,33 @@
+{
+    "name": "beelab/recaptcha2-bundle",
+    "type": "symfony-bundle",
+    "description": "Provide Google Recaptch2 form type ",
+    "keywords": ["Symfony", "Form", "Recaptcha"],
+    "homepage": "https://bee-lab.net",
+    "license": "LGPL-3.0",
+    "authors": [
+        {
+            "name": "Massimiliano Arione ",
+            "email": "massimiliano.arione@bee-lab.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.8",
+        "symfony/symfony": "~2.3",
+        "google/recaptcha": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": { "Beelab\\Recaptcha2Bundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

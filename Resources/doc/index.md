@@ -87,3 +87,11 @@ class RegistrationType extends AbstractType
 ```
 
 As you can see, you can pass an array of validation groups to ``Recaptcha2`` constraint.
+
+In your template (likely in your main layout file), include a line like the following:
+
+``` html
+<script src="//www.google.com/recaptcha/api.js?hl=en"></script>
+```
+
+The ``hl`` parameter let you customize the language.

@@ -2,8 +2,8 @@
 
 namespace Beelab\Recaptcha2Bundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class TwigFormPass implements CompilerPassInterface
 {

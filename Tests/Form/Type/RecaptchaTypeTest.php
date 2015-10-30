@@ -11,7 +11,7 @@ class RecaptchaTypeTest extends \PHPUnit_Framework_TestCase
         $form = $this->getMock('Symfony\Component\Form\FormInterface');
         $view = $this->getMockBuilder('Symfony\Component\Form\FormView')->disableOriginalConstructor()->getMock();
         $type = new RecaptchaType('foo');
-        $type->buildView($view, $form, []);
+        $type->buildView($view, $form, array());
     }
 
     public function testGetParent()

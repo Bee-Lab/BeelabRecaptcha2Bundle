@@ -3,7 +3,7 @@
 namespace Beelab\Recaptcha2Bundle\Recaptcha;
 
 use ReCaptcha\ReCaptcha;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * RecaptchaVerifier.
@@ -16,7 +16,7 @@ class RecaptchaVerifier
     private $reCaptcha;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\Request
+     * @var Request
      */
     private $request;
 
@@ -26,14 +26,14 @@ class RecaptchaVerifier
     private $enabled = true;
 
     /**
-     * @param ReCaptcha    $reCaptcha
-     * @param RequestStack $requestStack
-     * @param bool         $enabled
+     * @param ReCaptcha $reCaptcha
+     * @param Request   $request
+     * @param bool      $enabled
      */
-    public function __construct(ReCaptcha $reCaptcha, RequestStack $requestStack, $enabled = true)
+    public function __construct(ReCaptcha $reCaptcha, Request $request, $enabled = true)
     {
         $this->reCaptcha = $reCaptcha;
-        $this->request = $requestStack->getCurrentRequest();
+        $this->request = $request;
         $this->enabled = $enabled;
     }
 

@@ -14,7 +14,7 @@
         </service>
         <service id="beelab_recaptcha2.verifier" class="Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier">
             <argument type="service" id="beelab_recaptcha2.google_recaptcha" />
-            <argument type="service" id="request_stack" />
+            <argument type="service" id="request" />
             <argument>%beelab_recaptcha2.enabled%</argument>
         </service>
         <service id="beelab_recaptcha2.validator" class="Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2Validator">

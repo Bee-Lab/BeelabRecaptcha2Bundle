@@ -12,6 +12,9 @@ Run from terminal:
 ```bash
 $ php composer.phar require beelab/recaptcha2-bundle
 ```
+> **Note**: if you use Symfony 2.3, you must use ``0.1`` branch, so replace previous command with
+> ``php composer.phar require beelab/recaptcha2-bundle:0.1.*``
+
 
 Enable bundle in the kernel:
 

@@ -13,7 +13,13 @@ class Recaptcha2ValidatorTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->context = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
+        $this->context = $this->getMock(
+            class_exists('Symfony\Component\Validator\Context\ExecutionContext') ? 'Symfony\Component\Validator\Context\ExecutionContext' : 'Symfony\Component\Validator\ExecutionContext',
+            array(),
+            array(),
+            '',
+            false
+        );
         $this->verifier = $this->getMockBuilder('Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier')
             ->disableOriginalConstructor()->getMock();
         $this->validator = new Recaptcha2Validator($this->verifier);

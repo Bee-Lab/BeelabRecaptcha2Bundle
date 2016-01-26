@@ -31,11 +31,24 @@ class RecaptchaType extends AbstractType
      */
     public function getParent()
     {
-        return 'form';
+        // BC for Symfony < 3
+        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            return 'form';
+        }
+
+        return 'Symfony\Component\Form\Extension\Core\Type\FormType';
     }
 
     /**
      * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
+
+    /**
+     * BC for Symfony < 3.0.
      */
     public function getName()
     {

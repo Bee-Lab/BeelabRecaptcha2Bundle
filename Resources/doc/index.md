@@ -77,7 +77,9 @@ class RegistrationType extends AbstractType
         $builder
             ->add('email')
             ->add('name')
+            // for Symfony 3, use FQCN instead of 'password'
             ->add('plainPassword', 'password')
+            // for Symfony 3, use 'Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType' instead of 'beelab_recaptcha2'
             ->add('captcha', 'beelab_recaptcha2', array(
                 'label' => false,
                 'mapped' => false,

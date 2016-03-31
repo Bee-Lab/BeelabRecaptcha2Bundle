@@ -10,10 +10,10 @@ BeelabRecaptcha2Bundle
 Run from terminal:
 
 ```bash
-$ php composer.phar require beelab/recaptcha2-bundle
+$ composer require beelab/recaptcha2-bundle
 ```
-> **Note**: if you use Symfony 2.3, you must use ``0.1`` branch, so replace previous command with
-> ``php composer.phar require beelab/recaptcha2-bundle:0.1.*``
+> **Note**: if you use Symfony 2.3, you must use `0.1` branch, so replace previous command with
+> `composer require beelab/recaptcha2-bundle:0.1.*`
 
 
 Enable bundle in the kernel:
@@ -39,11 +39,11 @@ Add following lines in your configuration:
 # app/config/config.yml
 
 beelab_recaptcha2:
-    site_key: %recaptcha_site_key%
-    secret: %recaptcha_secret%
+    site_key: "%recaptcha_site_key%"
+    secret: "%recaptcha_secret%"
 ```
 
-You should define ``recaptcha_site_key`` and ``recaptcha_secret`` parameters in your ``app/config/parameters.yml`` file.
+You should define `recaptcha_site_key` and `recaptcha_secret` parameters in your `app/config/parameters.yml` file.
 
 Since you cannot use a CAPTCHA in a test, you also should add following lines in your test configuration:
 
@@ -56,7 +56,7 @@ beelab_recaptcha2:
 
 ### 3. Usage
 
-In your form, use ``beelab_recaptcha2`` form type, as any other Symfony form types.
+In your form, use `beelab_recaptcha2` form type, as any other Symfony form types.
 Example:
 
 ``` php
@@ -91,7 +91,7 @@ class RegistrationType extends AbstractType
 
 ```
 
-As you can see, you can pass an array of validation groups to ``Recaptcha2`` constraint.
+As you can see, you can pass an array of validation groups to `Recaptcha2` constraint.
 
 In your template (likely in your main layout file), include a line like the following:
 
@@ -99,4 +99,4 @@ In your template (likely in your main layout file), include a line like the foll
 <script src="//www.google.com/recaptcha/api.js?hl=en"></script>
 ```
 
-The ``hl`` parameter let you customize the language.
+The `hl` parameter let you customize the language.

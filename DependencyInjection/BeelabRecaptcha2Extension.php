@@ -23,7 +23,21 @@ class BeelabRecaptcha2Extension extends Extension
         $container->setParameter('beelab_recaptcha2.secret', $config['secret']);
         $container->setParameter('beelab_recaptcha2.enabled', $config['enabled']);
 
+        $requestMethodClass = $this->getRequestMethod($config['request_method']);
+        $container->setParameter('beelab_recaptcha2.request_method', $requestMethodClass);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+    }
+
+    private function getRequestMethod($requestMethod)
+    {
+        switch ($requestMethod) {
+            case 'curl_post':
+                return 'ReCaptcha\RequestMethod\CurlPost';
+            case 'post':
+            default:
+                return 'ReCaptcha\RequestMethod\Post';
+        }
     }
 }

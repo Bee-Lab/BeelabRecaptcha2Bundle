@@ -5,8 +5,10 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="beelab_recaptcha2.google_recaptcha.request_method" class="%beelab_recaptcha2.request_method%" />
         <service id="beelab_recaptcha2.google_recaptcha" class="ReCaptcha\ReCaptcha">
             <argument>%beelab_recaptcha2.secret%</argument>
+            <argument type="service" id="beelab_recaptcha2.google_recaptcha.request_method" />
         </service>
         <service id="beelab_recaptcha2.type" class="Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType">
             <argument>%beelab_recaptcha2.site_key%</argument>

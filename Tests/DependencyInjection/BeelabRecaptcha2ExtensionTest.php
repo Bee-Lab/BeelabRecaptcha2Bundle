@@ -21,6 +21,7 @@ class BeelabRecaptcha2ExtensionTest extends \PHPUnit_Framework_TestCase
 
         $extension = new BeelabRecaptcha2Extension();
         $configs = array(
+            array('request_method' => 'curl_post'),
             array('site_key' => 'foo'),
             array('secret' => 'bar'),
             array('enabled' => true),

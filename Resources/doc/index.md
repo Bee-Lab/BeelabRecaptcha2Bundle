@@ -54,6 +54,19 @@ beelab_recaptcha2:
     enabled: false
 ```
 
+If your PHP environment has restrictions about `file_get_contents()` making HTTP requests you can use another `RequestMethod` from Google's Recaptcha library.
+
+Currently this Bundle supports the default `Post` and `CurlPost` methods. You can use the later by adding in your `config.yml`:
+
+``` yaml
+# app/config/config.yml
+
+beelab_recaptcha2:
+    request_method: curl_post
+```
+
+Otherwise the default value `post` will be used.
+
 ### 3. Usage
 
 In your form, use `beelab_recaptcha2` form type, as any other Symfony form types.

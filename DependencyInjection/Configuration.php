@@ -19,6 +19,10 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('beelab_recaptcha2');
         $rootNode
             ->children()
+                ->enumNode('request_method')
+                    ->values(array('curl_post', 'post'))
+                    ->defaultValue('post')
+                ->end()
                 ->scalarNode('site_key')
                     ->isRequired()
                 ->end()

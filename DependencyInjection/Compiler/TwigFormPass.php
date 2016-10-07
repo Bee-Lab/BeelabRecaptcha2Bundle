@@ -13,7 +13,7 @@ class TwigFormPass implements CompilerPassInterface
             return;
         }
         $container->setParameter('twig.form.resources', array_merge(
-            array('BeelabRecaptcha2Bundle:form:fields.html.twig'),
+            ['BeelabRecaptcha2Bundle:form:fields.html.twig'],
             $container->getParameter('twig.form.resources')
         ));
     }

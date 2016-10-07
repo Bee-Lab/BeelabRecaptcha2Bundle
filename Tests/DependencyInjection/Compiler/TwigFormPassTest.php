@@ -29,7 +29,7 @@ class TwigFormPassTest extends \PHPUnit_Framework_TestCase
 
         $builder->expects($this->once())->method('hasParameter')->will($this->returnValue(true));
         $builder->expects($this->once())->method('setParameter');
-        $builder->expects($this->once())->method('getParameter')->will($this->returnValue(array()));
+        $builder->expects($this->once())->method('getParameter')->will($this->returnValue([]));
 
         $pass = new TwigFormPass();
         $pass->process($builder);

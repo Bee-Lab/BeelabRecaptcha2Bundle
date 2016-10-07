@@ -20,12 +20,12 @@ class BeelabRecaptcha2ExtensionTest extends \PHPUnit_Framework_TestCase
         $container->expects($this->any())->method('getParameterBag')->will($this->returnValue($parameterBag));
 
         $extension = new BeelabRecaptcha2Extension();
-        $configs = array(
-            array('request_method' => 'curl_post'),
-            array('site_key' => 'foo'),
-            array('secret' => 'bar'),
-            array('enabled' => true),
-        );
+        $configs = [
+            ['request_method' => 'curl_post'],
+            ['site_key' => 'foo'],
+            ['secret' => 'bar'],
+            ['enabled' => true],
+        ];
         $extension->load($configs, $container);
     }
 }

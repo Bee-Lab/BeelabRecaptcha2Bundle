@@ -15,8 +15,8 @@ class Recaptcha2ValidatorTest extends \PHPUnit_Framework_TestCase
     {
         $this->context = $this->getMock(
             class_exists('Symfony\Component\Validator\Context\ExecutionContext') ? 'Symfony\Component\Validator\Context\ExecutionContext' : 'Symfony\Component\Validator\ExecutionContext',
-            array(),
-            array(),
+            [],
+            [],
             '',
             false
         );
@@ -29,7 +29,7 @@ class Recaptcha2ValidatorTest extends \PHPUnit_Framework_TestCase
     public function testValidateShouldThrowException()
     {
         $response = $this->getMockBuilder('ReCaptcha\Response')->disableOriginalConstructor()->getMock();
-        $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue(array()));
+        $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue([]));
         $exception = new \Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException($response);
         $constraint = new Recaptcha2();
         $this->verifier->expects($this->once())->method('verify')->will($this->throwException($exception));

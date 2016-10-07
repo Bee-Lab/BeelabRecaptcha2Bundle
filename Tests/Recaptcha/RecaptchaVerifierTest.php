@@ -50,7 +50,7 @@ class RecaptchaVerifierTest extends \PHPUnit_Framework_TestCase
         $this->request->request = $bag;
         $response = $this->getMockBuilder('ReCaptcha\Response')->disableOriginalConstructor()->getMock();
         $response->expects($this->once())->method('isSuccess')->will($this->returnValue(false));
-        $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue(array()));
+        $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue([]));
         $this->recaptcha->expects($this->once())->method('verify')->will($this->returnValue($response));
 
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack);

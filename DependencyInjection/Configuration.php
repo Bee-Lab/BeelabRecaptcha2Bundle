@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->enumNode('request_method')
-                    ->values(array('curl_post', 'post'))
+                    ->values(['curl_post', 'post'])
                     ->defaultValue('post')
                 ->end()
                 ->scalarNode('site_key')

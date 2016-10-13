@@ -22,21 +22,18 @@ class RecaptchaVerifierTest extends \PHPUnit_Framework_TestCase
     public function testVerifyDisabled()
     {
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack, false);
-        $verifier->verify();
+        $verifier->verify('captcha-response');
     }
 
     public function testVerifySuccess()
     {
-        $bag = $this->getMockBuilder('Symfony\Component\HttpFoundation\ParameterBag')
-            ->disableOriginalConstructor()->getMock();
-        $bag->expects($this->once())->method('get')->will($this->returnValue('foo'));
-        $this->request->request = $bag;
+        $this->request->expects($this->once())->method('getClientIp')->will($this->returnValue('127.0.0.1'));
         $response = $this->getMockBuilder('ReCaptcha\Response')->disableOriginalConstructor()->getMock();
         $response->expects($this->once())->method('isSuccess')->will($this->returnValue(true));
         $this->recaptcha->expects($this->once())->method('verify')->will($this->returnValue($response));
 
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack);
-        $verifier->verify();
+        $verifier->verify('captcha-response');
     }
 
     /**
@@ -44,16 +41,13 @@ class RecaptchaVerifierTest extends \PHPUnit_Framework_TestCase
      */
     public function testVerifyFailure()
     {
-        $bag = $this->getMockBuilder('Symfony\Component\HttpFoundation\ParameterBag')
-            ->disableOriginalConstructor()->getMock();
-        $bag->expects($this->once())->method('get')->will($this->returnValue('foo'));
-        $this->request->request = $bag;
+        $this->request->expects($this->once())->method('getClientIp')->will($this->returnValue('127.0.0.1'));
         $response = $this->getMockBuilder('ReCaptcha\Response')->disableOriginalConstructor()->getMock();
         $response->expects($this->once())->method('isSuccess')->will($this->returnValue(false));
         $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue([]));
         $this->recaptcha->expects($this->once())->method('verify')->will($this->returnValue($response));
 
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack);
-        $verifier->verify();
+        $verifier->verify('captcha-response');
     }
 }

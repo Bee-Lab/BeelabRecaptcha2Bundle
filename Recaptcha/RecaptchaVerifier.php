@@ -39,11 +39,14 @@ class RecaptchaVerifier
 
     /**
      * Verify reCaptcha response.
+     *
+     * @param string $recaptchaValue
+     *
+     * @throws RecaptchaException
      */
-    public function verify()
+    public function verify($recaptchaValue)
     {
         if ($this->enabled) {
-            $recaptchaValue = $this->request->request->get('g-recaptcha-response');
             /* @var \ReCaptcha\Response $response */
             $response = $this->reCaptcha->verify($recaptchaValue, $this->request->getClientIp());
             if (!$response->isSuccess()) {

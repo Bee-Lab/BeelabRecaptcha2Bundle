@@ -33,10 +33,10 @@ class RecaptchaType extends AbstractType
     {
         // BC for Symfony < 3
         if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return 'form';
+            return 'text';
         }
 
-        return 'Symfony\Component\Form\Extension\Core\Type\FormType';
+        return 'Symfony\Component\Form\Extension\Core\Type\TextType';
     }
 
     /**

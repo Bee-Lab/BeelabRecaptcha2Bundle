@@ -17,7 +17,7 @@ class RecaptchaTypeTest extends \PHPUnit_Framework_TestCase
     public function testGetParent()
     {
         $type = new RecaptchaType('foo');
-        $this->assertTrue('form' === $type->getParent() || 'Symfony\Component\Form\Extension\Core\Type\FormType' === $type->getParent());
+        $this->assertTrue('text' === $type->getParent() || 'Symfony\Component\Form\Extension\Core\Type\TextType' === $type->getParent());
     }
 
     public function testGetName()

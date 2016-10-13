@@ -31,7 +31,7 @@ class Recaptcha2Validator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         try {
-            $this->verifier->verify();
+            $this->verifier->verify($value);
         } catch (RecaptchaException $e) {
             $this->context->addViolation($constraint->message);
         }

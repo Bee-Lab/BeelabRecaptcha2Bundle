@@ -24,10 +24,10 @@ Enable bundle in the kernel:
 
 public function registerBundles()
 {
-    $bundles = array(
+    $bundles = [
         // ...
         new Beelab\Recaptcha2Bundle\BeelabRecaptcha2Bundle(),
-    );
+    ];
 }
 ```
 
@@ -54,9 +54,10 @@ beelab_recaptcha2:
     enabled: false
 ```
 
-If your PHP environment has restrictions about `file_get_contents()` making HTTP requests you can use another `RequestMethod` from Google's Recaptcha library.
+If your PHP environment has restrictions about `file_get_contents()` making HTTP requests,
+you can use another `RequestMethod` from Google's Recaptcha library.
 
-Currently this Bundle supports the default `Post` and `CurlPost` methods. You can use the later by adding in your `config.yml`:
+Currently this Bundle supports the default `Post` and `CurlPost` methods. You can use the latter by adding in your `config.yml`:
 
 ``` yaml
 # app/config/config.yml
@@ -65,11 +66,11 @@ beelab_recaptcha2:
     request_method: curl_post
 ```
 
-Otherwise the default value `post` will be used.
+Otherwise, the default value `post` will be used.
 
 ### 3. Usage
 
-In your form, use `beelab_recaptcha2` form type, as any other Symfony form types.
+In your form, use `Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType` form type, as any other Symfony form types.
 Example:
 
 ``` php
@@ -90,14 +91,12 @@ class RegistrationType extends AbstractType
         $builder
             ->add('email')
             ->add('name')
-            // for Symfony 3, use FQCN instead of 'password'
-            ->add('plainPassword', 'password')
-            // for Symfony 3, use 'Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType' instead of 'beelab_recaptcha2'
-            ->add('captcha', 'beelab_recaptcha2', array(
+            ->add('plainPassword', 'Symfony\Component\Form\Extension\Core\Type\PasswordType')
+            ->add('captcha', 'Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType', [
                 'label' => false,
                 'mapped' => false,
-                'constraints' => new Recaptcha2(array('groups' => array('create'))),
-            ))
+                'constraints' => new Recaptcha2(['groups' => ['create']]),
+            ])
         ;
     }
 }

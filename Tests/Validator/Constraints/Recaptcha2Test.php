@@ -3,8 +3,9 @@
 namespace Beelab\Recaptcha2Bundle\Tests\Validator\Constraints;
 
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
+use PHPUnit_Framework_TestCase as TestCase;
 
-class Recaptcha2Test extends \PHPUnit_Framework_TestCase
+class Recaptcha2Test extends TestCase
 {
     public function testValidatedBy()
     {

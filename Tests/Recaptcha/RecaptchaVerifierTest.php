@@ -3,8 +3,9 @@
 namespace Beelab\Recaptcha2Bundle\Tests\Recaptcha;
 
 use Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier;
+use PHPUnit_Framework_TestCase as TestCase;
 
-class RecaptchaVerifierTest extends \PHPUnit_Framework_TestCase
+class RecaptchaVerifierTest extends TestCase
 {
     protected $recaptcha;
     protected $request;
@@ -15,7 +16,7 @@ class RecaptchaVerifierTest extends \PHPUnit_Framework_TestCase
         $this->recaptcha = $this->getMockBuilder('ReCaptcha\ReCaptcha')->disableOriginalConstructor()->getMock();
         $this->request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')
             ->disableOriginalConstructor()->getMock();
-        $this->stack = $this->getMock('Symfony\Component\HttpFoundation\RequestStack');
+        $this->stack = $this->createMock('Symfony\Component\HttpFoundation\RequestStack');
         $this->stack->expects($this->once())->method('getCurrentRequest')->will($this->returnValue($this->request));
     }
 

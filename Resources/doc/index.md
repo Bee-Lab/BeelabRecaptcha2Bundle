@@ -12,9 +12,6 @@ Run from terminal:
 ```bash
 $ composer require beelab/recaptcha2-bundle
 ```
-> **Note**: if you use Symfony 2.3, you must use `0.1` branch, so replace previous command with
-> `composer require beelab/recaptcha2-bundle:0.1.*`
-
 
 Enable bundle in the kernel:
 
@@ -57,7 +54,8 @@ beelab_recaptcha2:
 If your PHP environment has restrictions about `file_get_contents()` making HTTP requests,
 you can use another `RequestMethod` from Google's Recaptcha library.
 
-Currently this Bundle supports the default `Post` and `CurlPost` methods. You can use the latter by adding in your `config.yml`:
+Currently, this bundle supports the default `Post` and `CurlPost` methods.
+You can use the latter by adding in your `config.yml`:
 
 ``` yaml
 # app/config/config.yml
@@ -76,11 +74,12 @@ Example:
 ``` php
 <?php
 // src/AppBundle/Form/Type/RegistrationType
-
 namespace AppBundle\Form\Type;
 
+use Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -91,8 +90,8 @@ class RegistrationType extends AbstractType
         $builder
             ->add('email')
             ->add('name')
-            ->add('plainPassword', 'Symfony\Component\Form\Extension\Core\Type\PasswordType')
-            ->add('captcha', 'Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType', [
+            ->add('plainPassword', PasswordType::class)
+            ->add('captcha', RecaptchaType::class, [
                 'label' => false,
                 'mapped' => false,
                 'constraints' => new Recaptcha2(['groups' => ['create']]),
@@ -111,4 +110,4 @@ In your template (likely in your main layout file), include a line like the foll
 <script src="//www.google.com/recaptcha/api.js?hl=en"></script>
 ```
 
-The `hl` parameter let you customize the language.
+The `hl` parameter can be used to customize language.

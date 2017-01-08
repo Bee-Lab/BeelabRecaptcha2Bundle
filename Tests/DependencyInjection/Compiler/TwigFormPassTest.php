@@ -3,13 +3,9 @@
 namespace Beelab\Recaptcha2Bundle\Tests\DependencyInjection\Compiler;
 
 use Beelab\Recaptcha2Bundle\DependencyInjection\Compiler\TwigFormPass;
+use PHPUnit_Framework_TestCase as TestCase;
 
-/*
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-*/
-
-class TwigFormPassTest extends \PHPUnit_Framework_TestCase
+class TwigFormPassTest extends TestCase
 {
     public function testProcessWithouParameter()
     {

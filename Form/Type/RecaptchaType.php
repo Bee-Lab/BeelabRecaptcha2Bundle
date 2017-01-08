@@ -3,6 +3,7 @@
 namespace Beelab\Recaptcha2Bundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
@@ -31,26 +32,13 @@ class RecaptchaType extends AbstractType
      */
     public function getParent()
     {
-        // BC for Symfony < 3
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return 'text';
-        }
-
-        return 'Symfony\Component\Form\Extension\Core\Type\TextType';
+        return TextType::class;
     }
 
     /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()
-    {
-        return $this->getName();
-    }
-
-    /**
-     * BC for Symfony < 3.0.
-     */
-    public function getName()
     {
         return 'beelab_recaptcha2';
     }

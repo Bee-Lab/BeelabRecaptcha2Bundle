@@ -3,11 +3,12 @@
 namespace Beelab\Recaptcha2Bundle\Tests\DependencyInjection;
 
 use Beelab\Recaptcha2Bundle\DependencyInjection\Configuration;
+use PHPUnit_Framework_TestCase as TestCase;
 
 /**
  * @group unit
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class ConfigurationTest extends TestCase
 {
     public function testGetConfigTreeBuilder()
     {

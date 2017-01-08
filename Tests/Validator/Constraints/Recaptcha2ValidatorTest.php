@@ -4,8 +4,9 @@ namespace Beelab\Recaptcha2Bundle\Tests\Validator\Constraints;
 
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2Validator;
+use PHPUnit_Framework_TestCase as TestCase;
 
-class Recaptcha2ValidatorTest extends \PHPUnit_Framework_TestCase
+class Recaptcha2ValidatorTest extends TestCase
 {
     protected $context;
     protected $verifier;
@@ -13,7 +14,7 @@ class Recaptcha2ValidatorTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->context = $this->getMock(
+        $this->context = $this->createMock(
             class_exists('Symfony\Component\Validator\Context\ExecutionContext') ? 'Symfony\Component\Validator\Context\ExecutionContext' : 'Symfony\Component\Validator\ExecutionContext',
             [],
             [],

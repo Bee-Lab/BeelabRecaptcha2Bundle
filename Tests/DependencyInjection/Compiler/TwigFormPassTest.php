@@ -3,7 +3,7 @@
 namespace Beelab\Recaptcha2Bundle\Tests\DependencyInjection\Compiler;
 
 use Beelab\Recaptcha2Bundle\DependencyInjection\Compiler\TwigFormPass;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class TwigFormPassTest extends TestCase
 {

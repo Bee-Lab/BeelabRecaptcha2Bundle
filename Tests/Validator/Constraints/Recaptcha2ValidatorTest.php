@@ -4,7 +4,7 @@ namespace Beelab\Recaptcha2Bundle\Tests\Validator\Constraints;
 
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2Validator;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class Recaptcha2ValidatorTest extends TestCase
 {

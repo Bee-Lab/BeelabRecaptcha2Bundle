@@ -3,7 +3,7 @@
 namespace Beelab\Recaptcha2Bundle\Tests\DependencyInjection;
 
 use Beelab\Recaptcha2Bundle\DependencyInjection\BeelabRecaptcha2Extension;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group unit

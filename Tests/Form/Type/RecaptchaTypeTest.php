@@ -3,7 +3,7 @@
 namespace Beelab\Recaptcha2Bundle\Tests\Form\Type;
 
 use Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class RecaptchaTypeTest extends TestCase
 {

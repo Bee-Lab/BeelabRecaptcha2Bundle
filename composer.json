@@ -21,7 +21,7 @@
     "require-dev": {
         "symfony/expression-language": "^2.8|^3.2",
         "symfony/phpunit-bridge": "^2.8|^3.2",
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^6.0"
     },
     "config": {
         "bin-dir": "bin"

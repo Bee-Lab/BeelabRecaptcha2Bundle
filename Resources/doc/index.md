@@ -103,6 +103,8 @@ class RegistrationType extends AbstractType
 ```
 
 As you can see, you can pass an array of validation groups to `Recaptcha2` constraint.
+For example, if you use it with registration in FOSUserBundle, you should use the
+"Registration" group.
 
 In your template (likely in your main layout file), include a line like the following:
 
@@ -111,3 +113,10 @@ In your template (likely in your main layout file), include a line like the foll
 ```
 
 The `hl` parameter can be used to customize language.
+For example, you can use the following in a Twig template, to get the currently used language:
+
+
+``` jinja
+<script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
+```
+

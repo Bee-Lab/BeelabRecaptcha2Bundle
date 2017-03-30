@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Type for ReCaptcha.
@@ -41,5 +42,16 @@ class RecaptchaType extends AbstractType
     public function getBlockPrefix()
     {
         return 'beelab_recaptcha2';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'label' => false,
+            'mapped' => false,
+        ]);
     }
 }

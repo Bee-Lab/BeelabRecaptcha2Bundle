@@ -27,4 +27,12 @@ class RecaptchaTypeTest extends TestCase
         $type = new RecaptchaType('foo');
         $this->assertEquals('beelab_recaptcha2', $type->getBlockPrefix());
     }
+
+    public function testConfigureOptions()
+    {
+        $resolver = $this->createMock('Symfony\Component\OptionsResolver\OptionsResolver');
+        $resolver->expects($this->once())->method('setDefaults');
+        $type = new RecaptchaType('foo');
+        $type->configureOptions($resolver);
+    }
 }

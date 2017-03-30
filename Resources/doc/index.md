@@ -92,9 +92,7 @@ class RegistrationType extends AbstractType
             ->add('name')
             ->add('plainPassword', PasswordType::class)
             ->add('captcha', RecaptchaType::class, [
-                'label' => false,
-                'mapped' => false,
-                'constraints' => new Recaptcha2(['groups' => ['create']]),
+                'constraints' => new Recaptcha2(['groups' => ['create']]),  // "groups" option is not mandatory
             ])
         ;
     }
@@ -104,7 +102,7 @@ class RegistrationType extends AbstractType
 
 As you can see, you can pass an array of validation groups to `Recaptcha2` constraint.
 For example, if you use it with registration in FOSUserBundle, you should use the
-"Registration" group.
+"Registration" group. If you don't use groups, you should remove such option.
 
 In your template (likely in your main layout file), include a line like the following:
 

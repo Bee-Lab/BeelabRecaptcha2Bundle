@@ -4,6 +4,8 @@ namespace Beelab\Recaptcha2Bundle\Tests\DependencyInjection;
 
 use Beelab\Recaptcha2Bundle\DependencyInjection\BeelabRecaptcha2Extension;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 /**
  * @group unit
@@ -12,10 +14,8 @@ class BeelabRecaptcha2ExtensionTest extends TestCase
 {
     public function testLoadSetParameters()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
-            ->disableOriginalConstructor()->getMock();
-        $parameterBag = $this->getMockBuilder('Symfony\Component\DependencyInjection\ParameterBag\ParameterBag')
-            ->disableOriginalConstructor()->getMock();
+        $container = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+        $parameterBag = $this->getMockBuilder(ParameterBag::class)->disableOriginalConstructor()->getMock();
 
         $parameterBag->expects($this->any())->method('add');
         $container->expects($this->any())->method('getParameterBag')->will($this->returnValue($parameterBag));
@@ -33,10 +33,8 @@ class BeelabRecaptcha2ExtensionTest extends TestCase
 
     public function testLoadSetParametersPost()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
-            ->disableOriginalConstructor()->getMock();
-        $parameterBag = $this->getMockBuilder('Symfony\Component\DependencyInjection\ParameterBag\ParameterBag')
-            ->disableOriginalConstructor()->getMock();
+        $container = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+        $parameterBag = $this->getMockBuilder(ParameterBag::class)->disableOriginalConstructor()->getMock();
 
         $parameterBag->expects($this->any())->method('add');
         $container->expects($this->any())->method('getParameterBag')->will($this->returnValue($parameterBag));

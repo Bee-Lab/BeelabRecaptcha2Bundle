@@ -2,9 +2,13 @@
 
 namespace Beelab\Recaptcha2Bundle\Tests\Validator\Constraints;
 
+use Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2Validator;
 use PHPUnit\Framework\TestCase;
+use ReCaptcha\Response;
+use Symfony\Component\Validator\Context\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContext as LegacyContext;
 
 class Recaptcha2ValidatorTest extends TestCase
 {
@@ -14,22 +18,16 @@ class Recaptcha2ValidatorTest extends TestCase
 
     protected function setUp()
     {
-        $this->context = $this->createMock(
-            class_exists('Symfony\Component\Validator\Context\ExecutionContext') ? 'Symfony\Component\Validator\Context\ExecutionContext' : 'Symfony\Component\Validator\ExecutionContext',
-            [],
-            [],
-            '',
-            false
-        );
-        $this->verifier = $this->getMockBuilder('Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier')
-            ->disableOriginalConstructor()->getMock();
+        $class = class_exists(ExecutionContext::class) ? ExecutionContext::class : LegacyContext::class;
+        $this->context = $this->createMock($class, [], [], '', false);
+        $this->verifier = $this->getMockBuilder(RecaptchaVerifier::class)->disableOriginalConstructor()->getMock();
         $this->validator = new Recaptcha2Validator($this->verifier);
         $this->validator->initialize($this->context);
     }
 
     public function testValidateShouldThrowException()
     {
-        $response = $this->getMockBuilder('ReCaptcha\Response')->disableOriginalConstructor()->getMock();
+        $response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
         $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue([]));
         $exception = new \Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException($response);
         $constraint = new Recaptcha2();

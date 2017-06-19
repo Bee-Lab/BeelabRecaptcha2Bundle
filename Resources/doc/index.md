@@ -4,6 +4,7 @@ BeelabRecaptcha2Bundle
 1. [Installation](#1-installation)
 2. [Configuration](#2-configuration)
 3. [Usage](#3-usage)
+4. [Customization](#3-customization)
 
 ### 1. Installation
 
@@ -116,5 +117,21 @@ For example, you can use the following in a Twig template, to get the currently 
 
 ``` jinja
 <script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
+```
+
+### 4. Customization
+
+If you want to customize the render of Recaptcha widget, just override `beelab_recaptcha2_widget`
+widget in one of your form themes.
+For example, suppose you want to display the compact version of the widget, and suppose that
+you configured a `_form_theme.html.twig` file under `form_themes` option of `twig` configuration.
+You can add to `_form_theme.html.twig` file the following lines:
+
+``` html+jinja
+{% block beelab_recaptcha2_widget %}
+    {% spaceless %}
+        <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-size="compact"></div>
+    {% endspaceless %}
+{% endblock %}
 ```
 

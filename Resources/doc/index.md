@@ -4,7 +4,7 @@ BeelabRecaptcha2Bundle
 1. [Installation](#1-installation)
 2. [Configuration](#2-configuration)
 3. [Usage](#3-usage)
-4. [Customization](#3-customization)
+4. [Customization](#4-customization)
 
 ### 1. Installation
 

@@ -20,7 +20,7 @@ class RecaptchaVerifierTest extends TestCase
         $this->recaptcha = $this->getMockBuilder(ReCaptcha::class)->disableOriginalConstructor()->getMock();
         $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
         $this->stack = $this->createMock(RequestStack::class);
-        $this->stack->expects($this->once())->method('getCurrentRequest')->will($this->returnValue($this->request));
+        $this->stack->expects($this->once())->method('getMasterRequest')->will($this->returnValue($this->request));
     }
 
     public function testVerifyDisabled()

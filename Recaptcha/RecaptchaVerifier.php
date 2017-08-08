@@ -36,7 +36,7 @@ class RecaptchaVerifier
     public function __construct(ReCaptcha $reCaptcha, RequestStack $requestStack, $enabled = true)
     {
         $this->reCaptcha = $reCaptcha;
-        $this->request = $requestStack->getCurrentRequest();
+        $this->request = $requestStack->getMasterRequest();
         $this->enabled = $enabled;
     }
 

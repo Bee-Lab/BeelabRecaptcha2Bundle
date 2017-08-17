@@ -2,6 +2,7 @@
 
 namespace Beelab\Recaptcha2Bundle\Tests\Validator\Constraints;
 
+use Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException;
 use Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2Validator;
@@ -29,7 +30,7 @@ class Recaptcha2ValidatorTest extends TestCase
     {
         $response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
         $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue([]));
-        $exception = new \Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException($response);
+        $exception = new RecaptchaException($response);
         $constraint = new Recaptcha2();
         $this->verifier->expects($this->once())->method('verify')->will($this->throwException($exception));
         $this->context->expects($this->once())->method('addViolation');

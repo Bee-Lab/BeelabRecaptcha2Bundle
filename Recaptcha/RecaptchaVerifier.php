@@ -33,7 +33,7 @@ class RecaptchaVerifier
      * @param RequestStack $requestStack
      * @param bool         $enabled
      */
-    public function __construct(ReCaptcha $reCaptcha, RequestStack $requestStack, $enabled = true)
+    public function __construct(ReCaptcha $reCaptcha, RequestStack $requestStack, bool $enabled = true)
     {
         $this->reCaptcha = $reCaptcha;
         $this->request = $requestStack->getMasterRequest();
@@ -47,10 +47,10 @@ class RecaptchaVerifier
      *
      * @throws RecaptchaException
      */
-    public function verify($recaptchaValue)
+    public function verify(string $recaptchaValue)
     {
         // We don't override the value provided by the form
-        // If empty, we use the default input drawed by google JS we need to get
+        // If empty, we use the default input drawn by google JS we need to get
         // the value with hardcoded variable
         if (
             (null === $recaptchaValue || empty($recaptchaValue)) &&

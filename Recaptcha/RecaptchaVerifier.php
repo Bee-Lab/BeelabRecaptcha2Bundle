@@ -43,11 +43,11 @@ class RecaptchaVerifier
     /**
      * Verify reCaptcha response.
      *
-     * @param string $recaptchaValue
+     * @param string|null $recaptchaValue
      *
      * @throws RecaptchaException
      */
-    public function verify(string $recaptchaValue)
+    public function verify(string $recaptchaValue = null)
     {
         // We don't override the value provided by the form
         // If empty, we use the default input drawn by google JS we need to get

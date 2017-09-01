@@ -46,4 +46,13 @@ class Recaptcha2ValidatorTest extends TestCase
 
         $this->validator->validate('dummy', $constraint);
     }
+
+    public function testValidateShouldAcceptEmptyValues()
+    {
+        $constraint = new Recaptcha2();
+        $this->verifier->expects($this->once())->method('verify');
+        $this->context->expects($this->never())->method('addViolation');
+
+        $this->validator->validate(null, $constraint);
+    }
 }

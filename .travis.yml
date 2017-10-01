@@ -3,6 +3,7 @@ language: php
 php:
     - 7.0
     - 7.1
+    - 7.2
     - nightly
 
 cache:
@@ -16,8 +17,8 @@ matrix:
           env: COMPOSER_FLAGS="--prefer-lowest" SYMFONY_VERSION=2.8.*
         - php: 7.1
           env: SYMFONY_VERSION=3.2.* SYMFONY_DEPRECATIONS_HELPER=strict
-        - php: nightly
-          env: SYMFONY_VERSION=3.3.* SYMFONY_DEPRECATIONS_HELPER=strict DEPENDENCIES=dev COMPOSER_FLAGS="--prefer-stable"
+        - php: 7.2
+          env: SYMFONY_VERSION=3.4.* DEPENDENCIES=dev COMPOSER_FLAGS="--prefer-stable"
     allow_failures:
         - php: nightly
 

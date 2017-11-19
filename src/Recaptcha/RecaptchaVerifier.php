@@ -5,9 +5,6 @@ namespace Beelab\Recaptcha2Bundle\Recaptcha;
 use ReCaptcha\ReCaptcha;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-/**
- * RecaptchaVerifier.
- */
 class RecaptchaVerifier
 {
     // The default input drawed by Google JS
@@ -28,11 +25,6 @@ class RecaptchaVerifier
      */
     private $enabled = true;
 
-    /**
-     * @param ReCaptcha    $reCaptcha
-     * @param RequestStack $requestStack
-     * @param bool         $enabled
-     */
     public function __construct(ReCaptcha $reCaptcha, RequestStack $requestStack, bool $enabled = true)
     {
         $this->reCaptcha = $reCaptcha;
@@ -40,14 +32,7 @@ class RecaptchaVerifier
         $this->enabled = $enabled;
     }
 
-    /**
-     * Verify reCaptcha response.
-     *
-     * @param string|null $recaptchaValue
-     *
-     * @throws RecaptchaException
-     */
-    public function verify(string $recaptchaValue = null)
+    public function verify(string $recaptchaValue = null): void
     {
         // We don't override the value provided by the form
         // If empty, we use the default input drawn by google JS we need to get

@@ -7,9 +7,6 @@ use Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-/**
- * Recaptcha2Validator.
- */
 class Recaptcha2Validator extends ConstraintValidator
 {
     /**
@@ -17,18 +14,12 @@ class Recaptcha2Validator extends ConstraintValidator
      */
     private $verifier;
 
-    /**
-     * @param RecaptchaVerifier $verifier
-     */
     public function __construct(RecaptchaVerifier $verifier)
     {
         $this->verifier = $verifier;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         try {
             $this->verifier->verify($value);

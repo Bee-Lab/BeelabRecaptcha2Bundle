@@ -11,10 +11,7 @@ class Recaptcha2 extends Constraint
 {
     public $message = 'Invalid ReCaptcha.';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return 'recaptcha2';
     }

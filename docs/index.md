@@ -14,12 +14,11 @@ Run from terminal:
 $ composer require beelab/recaptcha2-bundle
 ```
 
-Enable bundle in the kernel:
+If you don't use Flex, you need to manually enable bundle in your kernel:
 
 ```php
 <?php
 // app/AppKernel.php
-
 public function registerBundles()
 {
     $bundles = [
@@ -33,8 +32,8 @@ public function registerBundles()
 
 Add following lines in your configuration:
 
-``` yaml
-# app/config/config.yml
+```yaml
+# app/config/config.yml or config/packages/beelab_recaptcha2.yaml
 
 beelab_recaptcha2:
     site_key: "%recaptcha_site_key%"
@@ -45,8 +44,8 @@ You should define `recaptcha_site_key` and `recaptcha_secret` parameters in your
 
 Since you cannot use a CAPTCHA in a test, you also should add following lines in your test configuration:
 
-``` yaml
-# app/config/config_test.yml
+```yaml
+# app/config/config_test.yml or config/packages/test/beelab_recaptcha2.yaml
 
 beelab_recaptcha2:
     enabled: false
@@ -58,8 +57,8 @@ you can use another `RequestMethod` from Google's Recaptcha library.
 Currently, this bundle supports the default `Post` and `CurlPost` methods.
 You can use the latter by adding in your `config.yml`:
 
-``` yaml
-# app/config/config.yml
+```yaml
+# app/config/config.yml or config/packages/beelab_recaptcha2.yaml
 
 beelab_recaptcha2:
     request_method: curl_post
@@ -72,10 +71,10 @@ Otherwise, the default value `post` will be used.
 In your form, use `Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType` form type, as any other Symfony form types.
 Example:
 
-``` php
+```php
 <?php
-// src/AppBundle/Form/Type/RegistrationType
-namespace AppBundle\Form\Type;
+// src/Form/RegistrationType
+namespace App\Form;
 
 use Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
@@ -98,7 +97,6 @@ class RegistrationType extends AbstractType
         ;
     }
 }
-
 ```
 
 As you can see, you can pass an array of validation groups to `Recaptcha2` constraint.
@@ -115,7 +113,7 @@ The `hl` parameter can be used to customize language.
 For example, you can use the following in a Twig template, to get the currently used language:
 
 
-``` jinja
+```jinja
 <script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
 ```
 
@@ -127,7 +125,7 @@ For example, suppose you want to display the compact version of the widget, and 
 you configured a `_form_theme.html.twig` file under `form_themes` option of `twig` configuration.
 You can add to `_form_theme.html.twig` file the following lines:
 
-``` html+jinja
+```html+jinja
 {% block beelab_recaptcha2_widget %}
     {% spaceless %}
         <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-size="compact"></div>

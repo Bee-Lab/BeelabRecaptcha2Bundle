@@ -2,7 +2,7 @@
 // see https://github.com/FriendsOfPHP/PHP-CS-Fixer
 
 $finder = PhpCsFixer\Finder::create()
-    ->in([__DIR__.'/DependencyInjection', __DIR__.'/Form', __DIR__.'/Recaptcha', __DIR__.'/Tests', __DIR__.'/Validator'])
+    ->in([__DIR__.'/src', __DIR__.'/tests'])
 ;
 
 return PhpCsFixer\Config::create()

@@ -33,19 +33,31 @@ public function registerBundles()
 Add following lines in your configuration:
 
 ```yaml
-# app/config/config.yml or config/packages/beelab_recaptcha2.yaml
+# config/packages/beelab_recaptcha2.yaml
 
 beelab_recaptcha2:
-    site_key: "%recaptcha_site_key%"
-    secret: "%recaptcha_secret%"
+    site_key: '%env(APP_RECAPTCHA_SITE_KEY)%'
+    secret: '%env(APP_RECAPTCHA_SECRET)%'
 ```
 
-You should define `recaptcha_site_key` and `recaptcha_secret` parameters in your `app/config/parameters.yml` file.
+You should define `APP_RECAPTCHA_SITE_KEY` and `APP_RECAPTCHA_SECRET` in your environment variabiles.
+
+If you're still using the old, non-environment system:
+
+```yaml
+# app/config/config.yml
+
+beelab_recaptcha2:
+    site_key: '%recaptcha_site_key%'
+    secret: '%recaptcha_secret%'
+```
+
+And define `recaptcha_site_key` and `recaptcha_secret` parameters in `app/config/parameters.yml` file.
 
 Since you cannot use a CAPTCHA in a test, you also should add following lines in your test configuration:
 
 ```yaml
-# app/config/config_test.yml or config/packages/test/beelab_recaptcha2.yaml
+# config/packages/test/beelab_recaptcha2.yaml (or app/config/config_test.yml)
 
 beelab_recaptcha2:
     enabled: false
@@ -58,7 +70,7 @@ Currently, this bundle supports the default `Post` and `CurlPost` methods.
 You can use the latter by adding in your `config.yml`:
 
 ```yaml
-# app/config/config.yml or config/packages/beelab_recaptcha2.yaml
+# config/packages/beelab_recaptcha2.yaml (or app/config/config.yml)
 
 beelab_recaptcha2:
     request_method: curl_post

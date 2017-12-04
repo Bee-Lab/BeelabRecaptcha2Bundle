@@ -6,7 +6,7 @@
          beStrictAboutTestsThatDoNotTestAnything="true"
 >
     <testsuites>
-        <testsuite name="BeelabUserBundle test suite">
+        <testsuite name="BeelabRecaptcha2Bundle test suite">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>

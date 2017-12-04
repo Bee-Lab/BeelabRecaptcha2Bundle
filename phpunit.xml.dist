@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/bootstrap.php" colors="true"
+<phpunit bootstrap="vendor/bootstrap.php" colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
@@ -7,16 +7,13 @@
 >
     <testsuites>
         <testsuite name="BeelabUserBundle test suite">
-            <directory suffix="Test.php">./tests</directory>
+            <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src</directory>
-            <exclude>
-                <directory>./src/Resources</directory>
-            </exclude>
+            <directory>src</directory>
         </whitelist>
     </filter>
 </phpunit>

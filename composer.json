@@ -25,7 +25,6 @@
         "symfony/phpunit-bridge": "^3.4|^4.0"
     },
     "config": {
-        "bin-dir": "bin",
         "sort-packages": true
     },
     "autoload": {

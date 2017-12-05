@@ -9,11 +9,23 @@ class TwigFormPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
+        $loaderDefinition = null;
+        if ($container->hasDefinition('twig.loader.filesystem')) {
+            $loaderDefinition = $container->getDefinition('twig.loader.filesystem');
+        }
+        if (null === $loaderDefinition) {
+            return;
+        }
         if (!$container->hasParameter('twig.form.resources')) {
             return;
         }
+
+        $refl = new \ReflectionClass('Beelab\Recaptcha2Bundle\BeelabRecaptcha2Bundle');
+        $path = dirname($refl->getFileName()).'/../templates';
+        $loaderDefinition->addMethodCall('addPath', [$path]);
+
         $container->setParameter('twig.form.resources', array_merge(
-            ['BeelabRecaptcha2Bundle:form:fields.html.twig'],
+            ['form_fields.html.twig'],
             $container->getParameter('twig.form.resources')
         ));
     }

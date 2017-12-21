@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class RecaptchaVerifierTest extends TestCase
 {
     protected $recaptcha;
+
     protected $request;
+
     protected $stack;
 
     protected function setUp()

@@ -14,7 +14,9 @@ use Symfony\Component\Validator\ExecutionContext as LegacyContext;
 class Recaptcha2ValidatorTest extends TestCase
 {
     protected $context;
+
     protected $verifier;
+
     protected $validator;
 
     protected function setUp()

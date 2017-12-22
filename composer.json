@@ -1,7 +1,7 @@
 {
     "name": "beelab/recaptcha2-bundle",
     "type": "symfony-bundle",
-    "description": "Provide Google Recaptch2 form type ",
+    "description": "Provide Google Recaptch2 form type",
     "keywords": ["Symfony", "Form", "Recaptcha"],
     "homepage": "https://github.com/bee-lab/",
     "license": "LGPL-3.0",
@@ -18,12 +18,14 @@
         "symfony/dependency-injection": "^3.4|^4.0",
         "symfony/form": "^3.4|^4.0",
         "symfony/http-kernel": "^3.4|^4.0",
-        "symfony/twig-bundle": "^3.4|^4.0",
         "symfony/validator": "^3.4|^4.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.4",
         "symfony/phpunit-bridge": "^3.4|^4.0"
+    },
+    "suggest": {
+        "symfony/twig-bundle": "To render widget"
     },
     "config": {
         "sort-packages": true

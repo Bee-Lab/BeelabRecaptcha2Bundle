@@ -13,7 +13,22 @@ class TwigFormPassTest extends TestCase
     {
         $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
 
-        $builder->expects($this->once())->method('hasDefinition')->will($this->returnValue(false));
+        $builder->expects($this->any())->method('hasDefinition')->will($this->returnValue(false));
+
+        $pass = new TwigFormPass();
+        $pass->process($builder);
+    }
+
+    public function testProcessWithoutFilesystemAndWithNativeFilesystem()
+    {
+        $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+        $definition = $this->createMock(Definition::class);
+
+        $builder->expects($this->at(0))->method('hasDefinition')->will($this->returnValue(false));
+        $builder->expects($this->at(1))->method('hasDefinition')->will($this->returnValue(true));
+        $builder->expects($this->once())->method('getDefinition')->will($this->returnValue($definition));
+        $builder->expects($this->once())->method('hasParameter')->will($this->returnValue(false));
+        $definition->expects($this->any())->method('addMethodCall');
 
         $pass = new TwigFormPass();
         $pass->process($builder);

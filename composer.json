@@ -4,7 +4,7 @@
     "description": "Provide Google Recaptch2 form type",
     "keywords": ["Symfony", "Form", "Recaptcha"],
     "homepage": "https://github.com/bee-lab/",
-    "license": "LGPL-3.0",
+    "license": "LGPL-3.0-or-later",
     "authors": [
         {
             "name": "Massimiliano Arione",

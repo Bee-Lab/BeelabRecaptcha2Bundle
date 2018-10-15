@@ -11,7 +11,7 @@ use ReCaptcha\Response;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\ExecutionContext as LegacyContext;
 
-class Recaptcha2ValidatorTest extends TestCase
+final class Recaptcha2ValidatorTest extends TestCase
 {
     protected $context;
 
@@ -19,16 +19,16 @@ class Recaptcha2ValidatorTest extends TestCase
 
     protected $validator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $class = class_exists(ExecutionContext::class) ? ExecutionContext::class : LegacyContext::class;
+        $class = \class_exists(ExecutionContext::class) ? ExecutionContext::class : LegacyContext::class;
         $this->context = $this->createMock($class, [], [], '', false);
         $this->verifier = $this->getMockBuilder(RecaptchaVerifier::class)->disableOriginalConstructor()->getMock();
         $this->validator = new Recaptcha2Validator($this->verifier);
         $this->validator->initialize($this->context);
     }
 
-    public function testValidateShouldThrowException()
+    public function testValidateShouldThrowException(): void
     {
         $response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
         $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue([]));
@@ -40,7 +40,7 @@ class Recaptcha2ValidatorTest extends TestCase
         $this->validator->validate('dummy', $constraint);
     }
 
-    public function testValidateShouldNotThrowException()
+    public function testValidateShouldNotThrowException(): void
     {
         $constraint = new Recaptcha2();
         $this->verifier->expects($this->once())->method('verify');
@@ -49,7 +49,7 @@ class Recaptcha2ValidatorTest extends TestCase
         $this->validator->validate('dummy', $constraint);
     }
 
-    public function testValidateShouldAcceptEmptyValues()
+    public function testValidateShouldAcceptEmptyValues(): void
     {
         $constraint = new Recaptcha2();
         $this->verifier->expects($this->once())->method('verify');

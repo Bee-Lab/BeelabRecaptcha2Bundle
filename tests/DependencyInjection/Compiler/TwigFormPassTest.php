@@ -7,9 +7,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
-class TwigFormPassTest extends TestCase
+final class TwigFormPassTest extends TestCase
 {
-    public function testProcessWithoutFilesystem()
+    public function testProcessWithoutFilesystem(): void
     {
         $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
 
@@ -19,7 +19,7 @@ class TwigFormPassTest extends TestCase
         $pass->process($builder);
     }
 
-    public function testProcessWithoutFilesystemAndWithNativeFilesystem()
+    public function testProcessWithoutFilesystemAndWithNativeFilesystem(): void
     {
         $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
         $definition = $this->createMock(Definition::class);
@@ -34,7 +34,7 @@ class TwigFormPassTest extends TestCase
         $pass->process($builder);
     }
 
-    public function testProcessWithoutParameter()
+    public function testProcessWithoutParameter(): void
     {
         $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
         $definition = $this->createMock(Definition::class);
@@ -48,7 +48,7 @@ class TwigFormPassTest extends TestCase
         $pass->process($builder);
     }
 
-    public function testProcess()
+    public function testProcess(): void
     {
         $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
         $definition = $this->createMock(Definition::class);

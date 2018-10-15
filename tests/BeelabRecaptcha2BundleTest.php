@@ -5,9 +5,9 @@ namespace Beelab\Recaptcha2Bundle\Tests;
 use Beelab\Recaptcha2Bundle\BeelabRecaptcha2Bundle;
 use PHPUnit\Framework\TestCase;
 
-class BeelabRecaptcha2BundleTest extends TestCase
+final class BeelabRecaptcha2BundleTest extends TestCase
 {
-    public function testBuild()
+    public function testBuild(): void
     {
         $builder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
             ->disableOriginalConstructor()->getMock();

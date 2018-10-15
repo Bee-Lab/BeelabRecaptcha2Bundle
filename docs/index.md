@@ -19,7 +19,7 @@ If you don't use Flex, you need to manually enable bundle in your kernel:
 ```php
 <?php
 // app/AppKernel.php
-public function registerBundles()
+public function registerBundles(): array
 {
     $bundles = [
         // ...
@@ -97,7 +97,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegistrationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('email')

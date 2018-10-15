@@ -9,9 +9,9 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 /**
  * @group unit
  */
-class ConfigurationTest extends TestCase
+final class ConfigurationTest extends TestCase
 {
-    public function testGetConfigTreeBuilder()
+    public function testGetConfigTreeBuilder(): void
     {
         $configuration = new Configuration();
         $this->assertInstanceOf(TreeBuilder::class, $configuration->getConfigTreeBuilder());

@@ -6,9 +6,9 @@ use Beelab\Recaptcha2Bundle\BeelabRecaptcha2Bundle;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class TwigFormPass implements CompilerPassInterface
+final class TwigFormPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $loaderDefinition = null;
         if ($container->hasDefinition('twig.loader.filesystem')) {
@@ -26,10 +26,10 @@ class TwigFormPass implements CompilerPassInterface
         }
 
         $refl = new \ReflectionClass(BeelabRecaptcha2Bundle::class);
-        $path = dirname($refl->getFileName()).'/../templates';
+        $path = \dirname($refl->getFileName()).'/../templates';
         $loaderDefinition->addMethodCall('addPath', [$path]);
 
-        $container->setParameter('twig.form.resources', array_merge(
+        $container->setParameter('twig.form.resources', \array_merge(
             ['form_fields.html.twig'],
             $container->getParameter('twig.form.resources')
         ));

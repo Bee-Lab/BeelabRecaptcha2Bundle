@@ -9,7 +9,7 @@ use ReCaptcha\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class RecaptchaVerifierTest extends TestCase
+final class RecaptchaVerifierTest extends TestCase
 {
     protected $recaptcha;
 
@@ -17,7 +17,7 @@ class RecaptchaVerifierTest extends TestCase
 
     protected $stack;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->recaptcha = $this->getMockBuilder(ReCaptcha::class)->disableOriginalConstructor()->getMock();
         $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
@@ -25,13 +25,13 @@ class RecaptchaVerifierTest extends TestCase
         $this->stack->expects($this->once())->method('getMasterRequest')->will($this->returnValue($this->request));
     }
 
-    public function testVerifyDisabled()
+    public function testVerifyDisabled(): void
     {
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack, false);
         $verifier->verify('captcha-response');
     }
 
-    public function testVerifySuccess()
+    public function testVerifySuccess(): void
     {
         $this->request->expects($this->once())->method('getClientIp')->will($this->returnValue('127.0.0.1'));
         $response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
@@ -42,11 +42,10 @@ class RecaptchaVerifierTest extends TestCase
         $verifier->verify('captcha-response');
     }
 
-    /**
-     * @expectedException \Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException
-     */
-    public function testVerifyFailure()
+    public function testVerifyFailure(): void
     {
+        $this->expectException(\Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException::class);
+
         $this->request->expects($this->once())->method('getClientIp')->will($this->returnValue('127.0.0.1'));
         $response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
         $response->expects($this->once())->method('isSuccess')->will($this->returnValue(false));

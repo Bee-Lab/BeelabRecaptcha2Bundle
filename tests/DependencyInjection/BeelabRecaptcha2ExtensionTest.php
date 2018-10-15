@@ -10,9 +10,9 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 /**
  * @group unit
  */
-class BeelabRecaptcha2ExtensionTest extends TestCase
+final class BeelabRecaptcha2ExtensionTest extends TestCase
 {
-    public function testLoadSetParameters()
+    public function testLoadSetParameters(): void
     {
         $container = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
         $parameterBag = $this->getMockBuilder(ParameterBag::class)->disableOriginalConstructor()->getMock();
@@ -31,7 +31,7 @@ class BeelabRecaptcha2ExtensionTest extends TestCase
         $this->assertInstanceOf(BeelabRecaptcha2Extension::class, $extension);
     }
 
-    public function testLoadSetParametersPost()
+    public function testLoadSetParametersPost(): void
     {
         $container = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
         $parameterBag = $this->getMockBuilder(ParameterBag::class)->disableOriginalConstructor()->getMock();

@@ -85,7 +85,7 @@ Example:
 
 ```php
 <?php
-// src/Form/RegistrationType
+// src/Form/RegistrationType.php
 namespace App\Form;
 
 use Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType;
@@ -104,7 +104,8 @@ class RegistrationType extends AbstractType
             ->add('name')
             ->add('plainPassword', PasswordType::class)
             ->add('captcha', RecaptchaType::class, [
-                'constraints' => new Recaptcha2(['groups' => ['create']]),  // "groups" option is not mandatory
+                // "groups" option is not mandatory
+                'constraints' => new Recaptcha2(['groups' => ['create']]),
             ])
         ;
     }

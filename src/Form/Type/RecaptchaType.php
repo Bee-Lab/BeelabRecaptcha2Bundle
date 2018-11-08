@@ -38,7 +38,7 @@ class RecaptchaType extends AbstractType
         $resolver->setDefaults([
             'label' => false,
             'mapped' => false,
-            'constraints' => new Recaptcha2()
+            'constraints' => new Recaptcha2(),
         ]);
     }
 }

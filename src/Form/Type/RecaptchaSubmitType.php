@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RecaptchaType extends AbstractType
+class RecaptchaSubmitType extends AbstractType
 {
     protected $siteKey;
 
@@ -21,24 +21,26 @@ class RecaptchaType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['site_key'] = $this->siteKey;
-    }
-
-    public function getParent(): string
-    {
-        return TextType::class;
+        $view->vars['button'] = $options['label'];
+        $view->vars['label'] = false;
     }
 
     public function getBlockPrefix(): string
     {
-        return 'beelab_recaptcha2';
+        return 'beelab_recaptcha2_submit';
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'label' => false,
-            'mapped' => false,
+            'label'       => false,
+            'mapped'      => false,
             'constraints' => new Recaptcha2()
         ]);
+    }
+
+    public function getParent()
+    {
+        return TextType::class;
     }
 }

@@ -3,3 +3,22 @@
         <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
     {% endspaceless %}
 {% endblock %}
+
+{%- block beelab_recaptcha2_submit_widget -%}
+  <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+  <script>
+    function {{ id }}Submit(token) {
+      var elem = document.getElementById("{{ id }}");
+      while ((elem = elem.parentElement) !== null) {
+        if (elem.nodeType === Node.ELEMENT_NODE && elem.tagName === 'FORM') {
+          elem.submit();
+          break;
+        }
+      }
+    }
+  </script>
+  {%- set label = button %}
+  {%- set attr = attr|merge({"data-sitekey": site_key, "data-callback": id ~ 'Submit', class: (attr.class|default('') ~ ' g-recaptcha')}) -%}
+  {% block submit_widget %}{% endblock %}
+{%- endblock beelab_recaptcha2_submit_widget -%}
+

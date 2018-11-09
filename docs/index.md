@@ -104,9 +104,16 @@ class RegistrationType extends AbstractType
             ->add('name')
             ->add('plainPassword', PasswordType::class)
             ->add('captcha', RecaptchaType::class, [
+                // You can use RecaptchaSubmitType
                 // "groups" option is not mandatory
                 'constraints' => new Recaptcha2(['groups' => ['create']]),
             ])
+            // For Invisible Recaptcha
+            /*
+            ->add('captcha', RecaptchaSubmitType::class, [
+                'label' => 'Save'
+            ])
+            */
         ;
     }
 }
@@ -128,6 +135,19 @@ For example, you can use the following in a Twig template, to get the currently 
 
 ```jinja
 <script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
+```
+
+To use invisible ReCaptcha you will need to define an additional callback:
+
+```
+function recaptchaCallback (token) {
+    var elem = document.querySelector(".g-recaptcha");
+    while ((elem = elem.parentElement) !== null) {
+    if (elem.nodeType === Node.ELEMENT_NODE && elem.tagName === 'FORM') {
+        elem.submit();
+        break;
+    }
+}
 ```
 
 ### 4. Customization

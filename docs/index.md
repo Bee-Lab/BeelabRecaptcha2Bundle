@@ -140,9 +140,9 @@ You can add to `_form_theme.html.twig` file the following lines:
 
 ```html+jinja
 {% block beelab_recaptcha2_widget %}
-    {% spaceless %}
+    {% filter spaceless %}
         <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-size="compact"></div>
-    {% endspaceless %}
+    {% endfilter %}
 {% endblock %}
 ```
 

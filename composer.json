@@ -2,7 +2,11 @@
     "name": "beelab/recaptcha2-bundle",
     "type": "symfony-bundle",
     "description": "Provide Google Recaptch2 form type",
-    "keywords": ["Symfony", "Form", "Recaptcha"],
+    "keywords": [
+        "Symfony",
+        "Form",
+        "Recaptcha"
+    ],
     "homepage": "https://github.com/bee-lab/",
     "license": "LGPL-3.0-or-later",
     "authors": [
@@ -14,31 +18,35 @@
     "require": {
         "php": "^7.1",
         "google/recaptcha": "^1.2",
-        "symfony/config": "^3.4|^4.1",
-        "symfony/dependency-injection": "^3.4|^4.1",
-        "symfony/form": "^3.4|^4.1",
-        "symfony/http-kernel": "^3.4|^4.1",
-        "symfony/validator": "^3.4|^4.1"
+        "symfony/config": "^3.4 || ^4.1",
+        "symfony/dependency-injection": "^3.4 || ^4.1",
+        "symfony/form": "^3.4 || ^4.1",
+        "symfony/http-kernel": "^3.4 || ^4.1",
+        "symfony/validator": "^3.4 || ^4.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0|^8.0",
+        "phpunit/phpunit": "^7.0 || ^8.0",
         "symfony/phpunit-bridge": "^4.1"
     },
     "suggest": {
-        "symfony/twig-bundle": "To render widget"
+        "symfony/twig-bundle": "To render widget. Minimum supported Twig version is 1.34, minimum suggested is 2.4"
     },
     "config": {
         "sort-packages": true
     },
-    "autoload": {
-        "psr-4": { "Beelab\\Recaptcha2Bundle\\": "src" }
-    },
-    "autoload-dev": {
-        "psr-4": { "Beelab\\Recaptcha2Bundle\\Tests\\": "tests" }
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.1.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Beelab\\Recaptcha2Bundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Beelab\\Recaptcha2Bundle\\Tests\\": "tests"
         }
     }
 }

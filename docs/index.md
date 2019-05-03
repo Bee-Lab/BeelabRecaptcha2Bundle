@@ -142,7 +142,7 @@ You can add to `_form_theme.html.twig` file the following lines:
 {% block beelab_recaptcha2_widget %}
     {% apply spaceless %}
         <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-size="compact"></div>
-    {% endfilter %}
-{% endapply %}
+    {% endapply %}
+{% endblock %}
 ```
 

@@ -1,5 +1,3 @@
-{% block beelab_recaptcha2_widget %}
-    {% filter spaceless %}
-        <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
-    {% endfilter %}
-{% endblock %}
+{% block beelab_recaptcha2_widget -%}
+    <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
+{%- endblock %}

@@ -139,10 +139,8 @@ you configured a `_form_theme.html.twig` file under `form_themes` option of `twi
 You can add to `_form_theme.html.twig` file the following lines:
 
 ```html+jinja
-{% block beelab_recaptcha2_widget %}
-    {% apply spaceless %}
-        <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-size="compact"></div>
-    {% endapply %}
-{% endblock %}
+{% block beelab_recaptcha2_widget -%}
+    <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-size="compact"></div>
+{%- endblock %}
 ```
 

@@ -31,7 +31,7 @@ final class Recaptcha2ValidatorTest extends TestCase
     public function testValidateShouldThrowException(): void
     {
         $response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
-        $response->expects($this->once())->method('getErrorCodes')->will($this->returnValue([]));
+        $response->expects($this->once())->method('getErrorCodes')->willReturn([]);
         $exception = new RecaptchaException($response);
         $constraint = new Recaptcha2();
         $this->verifier->expects($this->once())->method('verify')->will($this->throwException($exception));

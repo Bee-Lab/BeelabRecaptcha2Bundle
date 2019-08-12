@@ -22,7 +22,7 @@ final class Recaptcha2ValidatorTest extends TestCase
     protected function setUp(): void
     {
         $class = \class_exists(ExecutionContext::class) ? ExecutionContext::class : LegacyContext::class;
-        $this->context = $this->createMock($class, [], [], '', false);
+        $this->context = $this->createMock($class);
         $this->verifier = $this->getMockBuilder(RecaptchaVerifier::class)->disableOriginalConstructor()->getMock();
         $this->validator = new Recaptcha2Validator($this->verifier);
         $this->validator->initialize($this->context);

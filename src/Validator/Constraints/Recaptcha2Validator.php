@@ -7,7 +7,7 @@ use Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-class Recaptcha2Validator extends ConstraintValidator
+final class Recaptcha2Validator extends ConstraintValidator
 {
     /**
      * @var RecaptchaVerifier
@@ -24,6 +24,7 @@ class Recaptcha2Validator extends ConstraintValidator
         try {
             $this->verifier->verify($value);
         } catch (RecaptchaException $e) {
+            /** @var Recaptcha2 $constraint */
             $this->context->addViolation($constraint->message);
         }
     }

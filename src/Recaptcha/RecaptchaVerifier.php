@@ -23,7 +23,7 @@ class RecaptchaVerifier
     /**
      * @var bool
      */
-    private $enabled = true;
+    private $enabled;
 
     public function __construct(ReCaptcha $reCaptcha, RequestStack $requestStack, bool $enabled = true)
     {
@@ -32,7 +32,7 @@ class RecaptchaVerifier
         $this->enabled = $enabled;
     }
 
-    public function verify(string $recaptchaValue = null): void
+    public function verify(?string $recaptchaValue = null): void
     {
         // We don't override the value provided by the form
         // If empty, we use the default input drawn by google JS we need to get

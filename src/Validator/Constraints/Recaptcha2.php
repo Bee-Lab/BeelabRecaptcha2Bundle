@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class Recaptcha2 extends Constraint
+final class Recaptcha2 extends Constraint
 {
     public $message = 'Invalid ReCaptcha.';
 

@@ -6,7 +6,7 @@ use Beelab\Recaptcha2Bundle\DependencyInjection\Compiler\TwigFormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class BeelabRecaptcha2Bundle extends Bundle
+final class BeelabRecaptcha2Bundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {

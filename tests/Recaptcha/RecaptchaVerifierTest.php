@@ -19,8 +19,8 @@ final class RecaptchaVerifierTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->recaptcha = $this->getMockBuilder(ReCaptcha::class)->disableOriginalConstructor()->getMock();
-        $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+        $this->recaptcha = $this->createMock(ReCaptcha::class);
+        $this->request = $this->createMock(Request::class);
         $this->stack = $this->createMock(RequestStack::class);
         $this->stack->expects($this->once())->method('getMasterRequest')->willReturn($this->request);
     }
@@ -34,7 +34,7 @@ final class RecaptchaVerifierTest extends TestCase
     public function testVerifySuccess(): void
     {
         $this->request->expects($this->once())->method('getClientIp')->willReturn('127.0.0.1');
-        $response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
+        $response = $this->createMock(Response::class);
         $response->expects($this->once())->method('isSuccess')->willReturn(true);
         $this->recaptcha->expects($this->once())->method('verify')->willReturn($response);
 
@@ -47,7 +47,7 @@ final class RecaptchaVerifierTest extends TestCase
         $this->expectException(\Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException::class);
 
         $this->request->expects($this->once())->method('getClientIp')->willReturn('127.0.0.1');
-        $response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
+        $response = $this->createMock(Response::class);
         $response->expects($this->once())->method('isSuccess')->willReturn(false);
         $response->expects($this->once())->method('getErrorCodes')->willReturn([]);
         $this->recaptcha->expects($this->once())->method('verify')->willReturn($response);

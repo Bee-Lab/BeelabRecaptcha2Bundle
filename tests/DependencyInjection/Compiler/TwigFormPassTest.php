@@ -11,7 +11,8 @@ final class TwigFormPassTest extends TestCase
 {
     public function testProcessWithoutFilesystem(): void
     {
-        $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+        /** @var ContainerBuilder&\PHPUnit\Framework\MockObject\MockObject $builder */
+        $builder = $this->createMock(ContainerBuilder::class);
 
         $builder->expects($this->any())->method('hasDefinition')->willReturn(false);
 
@@ -21,7 +22,8 @@ final class TwigFormPassTest extends TestCase
 
     public function testProcessWithoutFilesystemAndWithNativeFilesystem(): void
     {
-        $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+        /** @var ContainerBuilder&\PHPUnit\Framework\MockObject\MockObject $builder */
+        $builder = $this->createMock(ContainerBuilder::class);
         $definition = $this->createMock(Definition::class);
 
         $builder->expects($this->at(0))->method('hasDefinition')->willReturn(false);
@@ -36,7 +38,8 @@ final class TwigFormPassTest extends TestCase
 
     public function testProcessWithoutParameter(): void
     {
-        $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+        /** @var ContainerBuilder&\PHPUnit\Framework\MockObject\MockObject $builder */
+        $builder = $this->createMock(ContainerBuilder::class);
         $definition = $this->createMock(Definition::class);
 
         $builder->expects($this->once())->method('hasDefinition')->willReturn(true);
@@ -50,7 +53,8 @@ final class TwigFormPassTest extends TestCase
 
     public function testProcess(): void
     {
-        $builder = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+        /** @var ContainerBuilder&\PHPUnit\Framework\MockObject\MockObject $builder */
+        $builder = $this->createMock(ContainerBuilder::class);
         $definition = $this->createMock(Definition::class);
 
         $builder->expects($this->once())->method('hasDefinition')->willReturn(true);

@@ -14,8 +14,10 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
 {
     public function testLoadSetParameters(): void
     {
-        $container = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
-        $parameterBag = $this->getMockBuilder(ParameterBag::class)->disableOriginalConstructor()->getMock();
+        /** @var ContainerBuilder|\PHPUnit\Framework\MockObject\MockObject $container */
+        $container = $this->createMock(ContainerBuilder::class);
+        /** @var ParameterBag|\PHPUnit\Framework\MockObject\MockObject $parameterBag */
+        $parameterBag = $this->createMock(ParameterBag::class);
 
         $parameterBag->expects($this->any())->method('add');
         $container->expects($this->any())->method('getParameterBag')->willReturn($parameterBag);
@@ -33,8 +35,10 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
 
     public function testLoadSetParametersPost(): void
     {
-        $container = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
-        $parameterBag = $this->getMockBuilder(ParameterBag::class)->disableOriginalConstructor()->getMock();
+        /** @var ContainerBuilder|\PHPUnit\Framework\MockObject\MockObject $container */
+        $container = $this->createMock(ContainerBuilder::class);
+        /** @var ParameterBag|\PHPUnit\Framework\MockObject\MockObject $parameterBag */
+        $parameterBag = $this->createMock(ParameterBag::class);
 
         $parameterBag->expects($this->any())->method('add');
         $container->expects($this->any())->method('getParameterBag')->willReturn($parameterBag);

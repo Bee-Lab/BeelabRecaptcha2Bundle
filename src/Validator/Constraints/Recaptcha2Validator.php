@@ -24,7 +24,7 @@ final class Recaptcha2Validator extends ConstraintValidator
         try {
             $this->verifier->verify($value);
         } catch (RecaptchaException $e) {
-            /** @var Recaptcha2 $constraint */
+            /* @var Recaptcha2 $constraint */
             $this->context->addViolation($constraint->message);
         }
     }

@@ -16,7 +16,9 @@ matrix:
         - php: 7.2
           env: SYMFONY_VERSION=3.4.* COMPOSER_FLAGS="--prefer-lowest" SYMFONY_DEPRECATIONS_HELPER=strict
         - php: 7.3
-          env: SYMFONY_VERSION=4.3.* COMPOSER_FLAGS="--prefer-stable"
+          env: SYMFONY_VERSION=4.4.*
+        - php: 7.4snapshot
+          env: SYMFONY_VERSION=5.0.* COMPOSER_FLAGS="--prefer-stable"
     allow_failures:
         - php: nightly
 
@@ -27,6 +29,9 @@ env:
 
 before_install:
     - composer self-update
-    - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
+    - |
+      if [ "$SYMFONY_VERSION" != "" ]; then
+           sed -ri 's/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'$SYMFONY_VERSION'"/' composer.json;
+      fi;
 
 install: composer update $COMPOSER_FLAGS --no-interaction

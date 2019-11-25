@@ -13,4 +13,9 @@ final class BeelabRecaptcha2Bundle extends Bundle
         parent::build($container);
         $container->addCompilerPass(new TwigFormPass());
     }
+
+    public function getPath(): string
+    {
+        return \dirname(__DIR__);
+    }
 }

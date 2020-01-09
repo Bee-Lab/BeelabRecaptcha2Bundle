@@ -33,8 +33,8 @@ class RecaptchaSubmitType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'label'       => false,
-            'mapped'      => false,
+            'label' => false,
+            'mapped' => false,
             'constraints' => new Recaptcha2(),
         ]);
     }

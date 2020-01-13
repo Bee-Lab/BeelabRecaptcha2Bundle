@@ -1,3 +1,9 @@
 {% block beelab_recaptcha2_widget -%}
     <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
 {%- endblock %}
+
+{%- block beelab_recaptcha2_submit_widget -%}
+    {%- set label = button %}
+    {%- set attr = attr|merge({"data-sitekey": site_key, "data-callback": 'recaptchaCallback', class: (attr.class|default('') ~ ' g-recaptcha')}) -%}
+    {% block submit_widget %}{% endblock %}
+{%- endblock beelab_recaptcha2_submit_widget -%}

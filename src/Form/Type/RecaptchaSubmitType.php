@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RecaptchaSubmitType extends AbstractType
+final class RecaptchaSubmitType extends AbstractType
 {
     protected $siteKey;
 
@@ -30,7 +30,7 @@ class RecaptchaSubmitType extends AbstractType
         return 'beelab_recaptcha2_submit';
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'label' => false,
@@ -39,7 +39,7 @@ class RecaptchaSubmitType extends AbstractType
         ]);
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return TextType::class;
     }

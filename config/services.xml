@@ -14,6 +14,10 @@
             <argument>%beelab_recaptcha2.site_key%</argument>
             <tag name="form.type" alias="beelab_recaptcha2" />
         </service>
+        <service id="beelab_recaptcha2.submit_type" class="Beelab\Recaptcha2Bundle\Form\Type\RecaptchaSubmitType" public="true">
+            <argument>%beelab_recaptcha2.site_key%</argument>
+            <tag name="form.type" alias="beelab_recaptcha2_submit" />
+        </service>
         <service id="beelab_recaptcha2.verifier" class="Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier">
             <argument type="service" id="beelab_recaptcha2.google_recaptcha" />
             <argument type="service" id="request_stack" />

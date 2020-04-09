@@ -4,6 +4,6 @@
 
 {%- block beelab_recaptcha2_submit_widget -%}
     {%- set label = button %}
-    {%- set attr = attr|merge({"data-sitekey": site_key, "data-callback": 'recaptchaCallback', class: (attr.class|default('') ~ ' g-recaptcha')}) -%}
+    {%- set attr = attr|merge({"data-sitekey": site_key, "data-callback": 'recaptchaCallback', style: 'display: none', class: (attr.class|default('') ~ ' g-recaptcha')}) -%}
     {% block submit_widget %}{% endblock %}
 {%- endblock beelab_recaptcha2_submit_widget -%}

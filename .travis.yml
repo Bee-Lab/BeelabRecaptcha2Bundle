@@ -1,16 +1,10 @@
 language: php
 
-php:
-    - 7.2
-    - 7.3
-    - 7.4
-    - nightly
-
 cache:
     directories:
         - $HOME/.composer/cache
 
-matrix:
+jobs:
     fast_finish: true
     include:
         - php: 7.2
@@ -18,9 +12,9 @@ matrix:
         - php: 7.3
           env: SYMFONY_VERSION=4.4.*
         - php: 7.4
-          env: SYMFONY_VERSION=5.0.* COMPOSER_FLAGS="--prefer-stable"
-    allow_failures:
+          env: SYMFONY_VERSION=5.1.* COMPOSER_FLAGS="--prefer-stable"
         - php: nightly
+          env: COMPOSER_FLAGS="--ignore-platform-reqs"
 
 env:
     global:

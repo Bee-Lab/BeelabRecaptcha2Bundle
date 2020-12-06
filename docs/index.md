@@ -14,19 +14,7 @@ Run from terminal:
 $ composer require beelab/recaptcha2-bundle
 ```
 
-If you don't use Flex, you need to manually enable bundle in your kernel:
-
-```php
-<?php
-// app/AppKernel.php
-public function registerBundles(): array
-{
-    $bundles = [
-        // ...
-        new Beelab\Recaptcha2Bundle\BeelabRecaptcha2Bundle(),
-    ];
-}
-```
+Bundle is automatically enabled by Flex.
 
 ### 2. Configuration
 
@@ -42,22 +30,10 @@ beelab_recaptcha2:
 
 You should define `APP_RECAPTCHA_SITE_KEY` and `APP_RECAPTCHA_SECRET` in your environment variabiles.
 
-If you're still using the old, non-environment system:
-
-```yaml
-# app/config/config.yml
-
-beelab_recaptcha2:
-    site_key: '%recaptcha_site_key%'
-    secret: '%recaptcha_secret%'
-```
-
-And define `recaptcha_site_key` and `recaptcha_secret` parameters in `app/config/parameters.yml` file.
-
 Since you cannot use a CAPTCHA in a test, you also should add following lines in your test configuration:
 
 ```yaml
-# config/packages/test/beelab_recaptcha2.yaml (or app/config/config_test.yml)
+# config/packages/test/beelab_recaptcha2.yaml
 
 beelab_recaptcha2:
     enabled: false
@@ -70,7 +46,7 @@ Currently, this bundle supports the default `Post` and `CurlPost` methods.
 You can use the latter by adding in your `config.yml`:
 
 ```yaml
-# config/packages/beelab_recaptcha2.yaml (or app/config/config.yml)
+# config/packages/beelab_recaptcha2.yaml
 
 beelab_recaptcha2:
     request_method: curl_post
@@ -125,7 +101,7 @@ For example, if you use it with registration in FOSUserBundle, you should use th
 
 In your template (likely in your main layout file), include a line like the following:
 
-``` html
+```html
 <script src="//www.google.com/recaptcha/api.js?hl=en"></script>
 ```
 
@@ -135,19 +111,6 @@ For example, you can use the following in a Twig template, to get the currently 
 
 ```jinja
 <script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
-```
-
-To use invisible ReCaptcha you will need to define an additional callback:
-
-```js
-function recaptchaCallback (token) {
-    var elem = document.querySelector(".g-recaptcha");
-    while ((elem = elem.parentElement) !== null) {
-    if (elem.nodeType === Node.ELEMENT_NODE && elem.tagName === 'FORM') {
-        elem.submit();
-        break;
-    }
-}
 ```
 
 ### 4. Customization

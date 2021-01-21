@@ -2,7 +2,7 @@ BeelabRecaptcha2Bundle
 ======================
 
 [![Total Downloads](https://poser.pugx.org/beelab/recaptcha2-bundle/downloads.png)](https://packagist.org/packages/beelab/recaptcha2-bundle)
-[![Build Status](https://travis-ci.org/Bee-Lab/BeelabRecaptcha2Bundle.png?branch=master)](https://travis-ci.org/Bee-Lab/BeelabRecaptcha2Bundle)
+[![Build Status](https://github.com/Bee-Lab/BeelabRecaptcha2Bundle/workflows/build/badge.svg)](https://github.com/Bee-Lab/BeelabRecaptcha2Bundle/actions)
 [![Test Coverage](https://codeclimate.com/github/Bee-Lab/BeelabRecaptcha2Bundle/badges/coverage.svg)](https://codeclimate.com/github/Bee-Lab/BeelabRecaptcha2Bundle/coverage)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/049e98a4-0371-49f3-9a99-f627547d1395/mini.png)](https://insight.sensiolabs.com/projects/049e98a4-0371-49f3-9a99-f627547d1395)
 

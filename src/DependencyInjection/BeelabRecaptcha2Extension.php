@@ -9,6 +9,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 final class BeelabRecaptcha2Extension extends Extension
 {
+    /**
+     * @param array<string, mixed> $configs
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();

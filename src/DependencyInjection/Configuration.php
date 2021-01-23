@@ -10,8 +10,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('beelab_recaptcha2');
-        // BC layer for symfony/config < 4.2
-        $rootNode = \method_exists($treeBuilder, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('beelab_recaptcha2');
+        $rootNode = $treeBuilder->getRootNode();
         $rootNode
             ->children()
                 ->enumNode('request_method')

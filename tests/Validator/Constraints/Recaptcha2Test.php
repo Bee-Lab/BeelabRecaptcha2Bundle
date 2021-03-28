@@ -10,6 +10,6 @@ final class Recaptcha2Test extends TestCase
     public function testValidatedBy(): void
     {
         $validator = new Recaptcha2();
-        $this->assertEquals('recaptcha2', $validator->validatedBy());
+        self::assertEquals('recaptcha2', $validator->validatedBy());
     }
 }

@@ -25,8 +25,8 @@ final class TwigFormPass implements CompilerPassInterface
             return;
         }
 
-        $refl = new \ReflectionClass(BeelabRecaptcha2Bundle::class);
-        $path = \dirname($refl->getFileName()).'/../templates';
+        $reflection = new \ReflectionClass(BeelabRecaptcha2Bundle::class);
+        $path = \dirname($reflection->getFileName()).'/../templates';
         $loaderDefinition->addMethodCall('addPath', [$path]);
 
         $container->setParameter('twig.form.resources', \array_merge(

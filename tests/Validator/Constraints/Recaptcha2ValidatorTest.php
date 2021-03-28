@@ -33,11 +33,11 @@ final class Recaptcha2ValidatorTest extends TestCase
     {
         /** @var Response&\PHPUnit\Framework\MockObject\MockObject $response */
         $response = $this->createMock(Response::class);
-        $response->expects($this->once())->method('getErrorCodes')->willReturn([]);
+        $response->expects(self::once())->method('getErrorCodes')->willReturn([]);
         $exception = new RecaptchaException($response);
         $constraint = new Recaptcha2();
-        $this->verifier->expects($this->once())->method('verify')->will($this->throwException($exception));
-        $this->context->expects($this->once())->method('addViolation');
+        $this->verifier->expects(self::once())->method('verify')->will(self::throwException($exception));
+        $this->context->expects(self::once())->method('addViolation');
 
         $this->validator->validate('dummy', $constraint);
     }
@@ -45,8 +45,8 @@ final class Recaptcha2ValidatorTest extends TestCase
     public function testValidateShouldNotThrowException(): void
     {
         $constraint = new Recaptcha2();
-        $this->verifier->expects($this->once())->method('verify');
-        $this->context->expects($this->never())->method('addViolation');
+        $this->verifier->expects(self::once())->method('verify');
+        $this->context->expects(self::never())->method('addViolation');
 
         $this->validator->validate('dummy', $constraint);
     }
@@ -54,8 +54,8 @@ final class Recaptcha2ValidatorTest extends TestCase
     public function testValidateShouldAcceptEmptyValues(): void
     {
         $constraint = new Recaptcha2();
-        $this->verifier->expects($this->once())->method('verify');
-        $this->context->expects($this->never())->method('addViolation');
+        $this->verifier->expects(self::once())->method('verify');
+        $this->context->expects(self::never())->method('addViolation');
 
         $this->validator->validate(null, $constraint);
     }

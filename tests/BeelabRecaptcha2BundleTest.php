@@ -15,6 +15,6 @@ final class BeelabRecaptcha2BundleTest extends TestCase
 
         $bundle = new BeelabRecaptcha2Bundle();
         $bundle->build($builder);
-        $this->assertInstanceOf(BeelabRecaptcha2Bundle::class, $bundle);
+        self::assertInstanceOf(BeelabRecaptcha2Bundle::class, $bundle);
     }
 }

@@ -19,26 +19,26 @@ final class RecaptchaTypeTest extends TestCase
         $view = $this->createMock(FormView::class);
         $type = new RecaptchaType('foo');
         $type->buildView($view, $form, []);
-        $this->assertInstanceOf(RecaptchaType::class, $type);
+        self::assertInstanceOf(RecaptchaType::class, $type);
     }
 
     public function testGetParent(): void
     {
         $type = new RecaptchaType('foo');
-        $this->assertTrue('text' === $type->getParent() || TextType::class === $type->getParent());
+        self::assertTrue('text' === $type->getParent() || TextType::class === $type->getParent());
     }
 
     public function testGetBlockPrefix(): void
     {
         $type = new RecaptchaType('foo');
-        $this->assertEquals('beelab_recaptcha2', $type->getBlockPrefix());
+        self::assertEquals('beelab_recaptcha2', $type->getBlockPrefix());
     }
 
     public function testConfigureOptions(): void
     {
         /** @var OptionsResolver&\PHPUnit\Framework\MockObject\MockObject $resolver */
         $resolver = $this->createMock(OptionsResolver::class);
-        $resolver->expects($this->once())->method('setDefaults');
+        $resolver->expects(self::once())->method('setDefaults');
         $type = new RecaptchaType('foo');
         $type->configureOptions($resolver);
     }

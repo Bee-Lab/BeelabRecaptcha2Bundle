@@ -11,7 +11,7 @@ return PhpCsFixer\Config::create()
         '@Symfony' => true,
         '@Symfony:risky' => true,
         '@PHP71Migration:risky' => true,
-        '@PHPUnit75Migration:risky' => true,
+        '@PHPUnit84Migration:risky' => true,
         'declare_strict_types' => false,
         'native_function_invocation' => true,
     ])

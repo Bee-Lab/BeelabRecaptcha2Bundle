@@ -19,8 +19,8 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
         /** @var ParameterBag|\PHPUnit\Framework\MockObject\MockObject $parameterBag */
         $parameterBag = $this->createMock(ParameterBag::class);
 
-        $parameterBag->expects($this->any())->method('add');
-        $container->expects($this->any())->method('getParameterBag')->willReturn($parameterBag);
+        $parameterBag->expects(self::any())->method('add');
+        $container->method('getParameterBag')->willReturn($parameterBag);
 
         $extension = new BeelabRecaptcha2Extension();
         $configs = [
@@ -30,7 +30,7 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
             ['enabled' => true],
         ];
         $extension->load($configs, $container);
-        $this->assertInstanceOf(BeelabRecaptcha2Extension::class, $extension);
+        self::assertInstanceOf(BeelabRecaptcha2Extension::class, $extension);
     }
 
     public function testLoadSetParametersPost(): void
@@ -40,8 +40,8 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
         /** @var ParameterBag|\PHPUnit\Framework\MockObject\MockObject $parameterBag */
         $parameterBag = $this->createMock(ParameterBag::class);
 
-        $parameterBag->expects($this->any())->method('add');
-        $container->expects($this->any())->method('getParameterBag')->willReturn($parameterBag);
+        $parameterBag->method('add');
+        $container->expects(self::any())->method('getParameterBag')->willReturn($parameterBag);
 
         $extension = new BeelabRecaptcha2Extension();
         $configs = [
@@ -51,6 +51,6 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
             ['enabled' => true],
         ];
         $extension->load($configs, $container);
-        $this->assertInstanceOf(BeelabRecaptcha2Extension::class, $extension);
+        self::assertInstanceOf(BeelabRecaptcha2Extension::class, $extension);
     }
 }

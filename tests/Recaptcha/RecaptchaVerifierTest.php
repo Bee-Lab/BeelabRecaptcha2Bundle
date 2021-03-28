@@ -2,6 +2,7 @@
 
 namespace Beelab\Recaptcha2Bundle\Tests\Recaptcha;
 
+use Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException;
 use Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier;
 use PHPUnit\Framework\TestCase;
 use ReCaptcha\ReCaptcha;
@@ -22,21 +23,22 @@ final class RecaptchaVerifierTest extends TestCase
         $this->recaptcha = $this->createMock(ReCaptcha::class);
         $this->request = $this->createMock(Request::class);
         $this->stack = $this->createMock(RequestStack::class);
-        $this->stack->expects($this->once())->method('getMasterRequest')->willReturn($this->request);
     }
 
     public function testVerifyDisabled(): void
     {
+        $this->stack->expects(self::never())->method('getMasterRequest');
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack, false);
         $verifier->verify('captcha-response');
     }
 
     public function testVerifySuccess(): void
     {
-        $this->request->expects($this->once())->method('getClientIp')->willReturn('127.0.0.1');
+        $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($this->request);
+        $this->request->expects(self::once())->method('getClientIp')->willReturn('127.0.0.1');
         $response = $this->createMock(Response::class);
-        $response->expects($this->once())->method('isSuccess')->willReturn(true);
-        $this->recaptcha->expects($this->once())->method('verify')->willReturn($response);
+        $response->expects(self::once())->method('isSuccess')->willReturn(true);
+        $this->recaptcha->expects(self::once())->method('verify')->willReturn($response);
 
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack);
         $verifier->verify('captcha-response');
@@ -44,13 +46,14 @@ final class RecaptchaVerifierTest extends TestCase
 
     public function testVerifyFailure(): void
     {
-        $this->expectException(\Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaException::class);
+        $this->expectException(RecaptchaException::class);
 
-        $this->request->expects($this->once())->method('getClientIp')->willReturn('127.0.0.1');
+        $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($this->request);
+        $this->request->expects(self::once())->method('getClientIp')->willReturn('127.0.0.1');
         $response = $this->createMock(Response::class);
-        $response->expects($this->once())->method('isSuccess')->willReturn(false);
-        $response->expects($this->once())->method('getErrorCodes')->willReturn([]);
-        $this->recaptcha->expects($this->once())->method('verify')->willReturn($response);
+        $response->expects(self::once())->method('isSuccess')->willReturn(false);
+        $response->expects(self::once())->method('getErrorCodes')->willReturn([]);
+        $this->recaptcha->expects(self::once())->method('verify')->willReturn($response);
 
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack);
         $verifier->verify('captcha-response');

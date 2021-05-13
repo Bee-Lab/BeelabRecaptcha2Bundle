@@ -58,7 +58,7 @@ class RecaptchaVerifier
 
     private function getRequest(): Request
     {
-        if (\is_callable([$this->requestStack, 'mainRequest'])) {
+        if (\is_callable([$this->requestStack, 'getMainRequest'])) {
             $request = $this->requestStack->getMainRequest();   // symfony 5.3+
         } else {
             $request = $this->requestStack->getMasterRequest();

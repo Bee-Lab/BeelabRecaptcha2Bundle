@@ -1,5 +1,5 @@
 .git*            export-ignore
-.php_cs          export-ignore
+.php-cs-fixer.*  export-ignore
 docs/            export-ignore
 phpunit.xml.dist export-ignore
 README.md        export-ignore

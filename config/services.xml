@@ -10,6 +10,10 @@
             <argument>%beelab_recaptcha2.secret%</argument>
             <argument type="service" id="beelab_recaptcha2.google_recaptcha.request_method" />
         </service>
+        <service id="beelab_recaptcha2.google_recaptcha_android" class="ReCaptcha\ReCaptcha">
+            <argument>%beelab_recaptcha2.android_secret%</argument>
+            <argument type="service" id="beelab_recaptcha2.google_recaptcha.request_method" />
+        </service>
         <service id="beelab_recaptcha2.type" class="Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType" public="true">
             <argument>%beelab_recaptcha2.site_key%</argument>
             <tag name="form.type" alias="beelab_recaptcha2" />
@@ -20,6 +24,7 @@
         </service>
         <service id="beelab_recaptcha2.verifier" class="Beelab\Recaptcha2Bundle\Recaptcha\RecaptchaVerifier">
             <argument type="service" id="beelab_recaptcha2.google_recaptcha" />
+            <argument type="service" id="beelab_recaptcha2.google_recaptcha_android" />
             <argument type="service" id="request_stack" />
             <argument>%beelab_recaptcha2.enabled%</argument>
         </service>

@@ -9,15 +9,14 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 final class BeelabRecaptcha2Extension extends Extension
 {
-    /**
-     * @param array<string, mixed> $configs
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('beelab_recaptcha2.site_key', $config['site_key']);
         $container->setParameter('beelab_recaptcha2.secret', $config['secret']);
+        $container->setParameter('beelab_recaptcha2.android_site_key', $config['android_site_key']);
+        $container->setParameter('beelab_recaptcha2.android_secret', $config['android_secret']);
         $container->setParameter('beelab_recaptcha2.enabled', $config['enabled']);
 
         $requestMethodClass = $this->getRequestMethod($config['request_method']);

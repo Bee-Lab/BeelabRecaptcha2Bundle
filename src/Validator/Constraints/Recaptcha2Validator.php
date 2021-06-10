@@ -22,7 +22,7 @@ final class Recaptcha2Validator extends ConstraintValidator
     public function validate($value, Constraint $constraint): void
     {
         try {
-            $this->verifier->verify($value);
+            $this->verifier->verify($value, $constraint->android);
         } catch (RecaptchaException $e) {
             /* @var Recaptcha2 $constraint */
             $this->context->addViolation($constraint->message);

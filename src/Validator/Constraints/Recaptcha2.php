@@ -9,8 +9,9 @@ use Symfony\Component\Validator\Constraint;
  */
 final class Recaptcha2 extends Constraint
 {
-    /** @var string */
-    public $message = 'Invalid ReCaptcha.';
+    public $message = 'Une erreur est survenue lors de la validation du captcha.';
+    
+    public $android = false;
 
     public function validatedBy(): string
     {

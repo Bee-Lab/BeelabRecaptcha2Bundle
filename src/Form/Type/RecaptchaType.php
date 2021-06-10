@@ -11,7 +11,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecaptchaType extends AbstractType
 {
-    /** @var string */
     protected $siteKey;
 
     public function __construct(string $siteKey)

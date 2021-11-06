@@ -27,7 +27,11 @@ final class RecaptchaVerifierTest extends TestCase
 
     public function testVerifyDisabled(): void
     {
-        $this->stack->expects(self::never())->method('getMasterRequest');
+        if (\is_callable([$this->stack, 'getMainRequest'])) {
+            $this->stack->expects(self::never())->method('getMainRequest');
+        } else {
+            $this->stack->expects(self::never())->method('getMasterRequest');
+        }
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack, false);
         $verifier->verify('captcha-response');
     }

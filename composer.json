@@ -18,15 +18,15 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "google/recaptcha": "^1.2",
-        "symfony/config": "^4.4 || ^5.0",
-        "symfony/dependency-injection": "^4.4 || ^5.0",
-        "symfony/form": "^4.4 || ^5.0",
-        "symfony/http-kernel": "^4.4 || ^5.0",
-        "symfony/validator": "^4.4 || ^5.0"
+        "symfony/config": "^4.4 || ^5.0 || ^6.0",
+        "symfony/dependency-injection": "^4.4 || ^5.0 || ^6.0",
+        "symfony/form": "^4.4 || ^5.0 || ^6.0",
+        "symfony/http-kernel": "^4.4 || ^5.0 || ^6.0",
+        "symfony/validator": "^4.4 || ^5.0 || ^6.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
-        "symfony/phpunit-bridge": "^5.2"
+        "symfony/phpunit-bridge": "^5.3"
     },
     "suggest": {
         "symfony/twig-bundle": "To render widget. Minimum supported Twig version is 1.34, minimum suggested is 2.4"

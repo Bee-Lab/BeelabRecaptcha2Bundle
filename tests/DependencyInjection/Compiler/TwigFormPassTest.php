@@ -14,7 +14,7 @@ final class TwigFormPassTest extends TestCase
         /** @var ContainerBuilder&\PHPUnit\Framework\MockObject\MockObject $builder */
         $builder = $this->createMock(ContainerBuilder::class);
 
-        $builder->expects($this->any())->method('hasDefinition')->willReturn(false);
+        $builder->method('hasDefinition')->willReturn(false);
 
         $pass = new TwigFormPass();
         $pass->process($builder);
@@ -30,7 +30,7 @@ final class TwigFormPassTest extends TestCase
         $builder->expects($this->at(1))->method('hasDefinition')->willReturn(true);
         $builder->expects($this->once())->method('getDefinition')->willReturn($definition);
         $builder->expects($this->once())->method('hasParameter')->willReturn(false);
-        $definition->expects($this->any())->method('addMethodCall');
+        $definition->method('addMethodCall');
 
         $pass = new TwigFormPass();
         $pass->process($builder);
@@ -45,7 +45,7 @@ final class TwigFormPassTest extends TestCase
         $builder->expects($this->once())->method('hasDefinition')->willReturn(true);
         $builder->expects($this->once())->method('getDefinition')->willReturn($definition);
         $builder->expects($this->once())->method('hasParameter')->willReturn(false);
-        $definition->expects($this->any())->method('addMethodCall');
+        $definition->method('addMethodCall');
 
         $pass = new TwigFormPass();
         $pass->process($builder);
@@ -62,7 +62,7 @@ final class TwigFormPassTest extends TestCase
         $builder->expects($this->once())->method('hasParameter')->willReturn(true);
         $builder->expects($this->once())->method('setParameter');
         $builder->expects($this->once())->method('getParameter')->willReturn([]);
-        $definition->expects($this->any())->method('addMethodCall');
+        $definition->method('addMethodCall');
 
         $pass = new TwigFormPass();
         $pass->process($builder);

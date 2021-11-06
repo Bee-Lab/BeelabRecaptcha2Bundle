@@ -34,7 +34,11 @@ final class RecaptchaVerifierTest extends TestCase
 
     public function testVerifySuccess(): void
     {
-        $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($this->request);
+        if (\is_callable([$this->stack, 'getMainRequest'])) {
+            $this->stack->expects(self::once())->method('getMainRequest')->willReturn($this->request);
+        } else {
+            $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($this->request);
+        }
         $this->request->expects(self::once())->method('getClientIp')->willReturn('127.0.0.1');
         $response = $this->createMock(Response::class);
         $response->expects(self::once())->method('isSuccess')->willReturn(true);
@@ -48,7 +52,11 @@ final class RecaptchaVerifierTest extends TestCase
     {
         $this->expectException(RecaptchaException::class);
 
-        $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($this->request);
+        if (\is_callable([$this->stack, 'getMainRequest'])) {
+            $this->stack->expects(self::once())->method('getMainRequest')->willReturn($this->request);
+        } else {
+            $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($this->request);
+        }
         $this->request->expects(self::once())->method('getClientIp')->willReturn('127.0.0.1');
         $response = $this->createMock(Response::class);
         $response->expects(self::once())->method('isSuccess')->willReturn(false);

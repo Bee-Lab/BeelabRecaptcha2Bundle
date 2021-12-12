@@ -5,23 +5,44 @@ on:
     push: ~
 
 jobs:
+    phpstan:
+        runs-on: ubuntu-20.04
+        name: PHPStan
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: PHPStan
+              uses: docker://oskarstark/phpstan-ga
+              env:
+                  REQUIRE_DEV: true
+              with:
+                  args: analyse
+    cs-fixer:
+        runs-on: ubuntu-20.04
+        name: PHP-CS-Fixer
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Fix CS
+              uses: docker://oskarstark/php-cs-fixer-ga
     tests:
         runs-on: ubuntu-20.04
         strategy:
+            fail-fast: false
             matrix:
                 include:
                     - description: 'Symfony 4.4'
                       php: '7.3'
                       composer_option: '--prefer-lowest'
-                    - description: 'Symfony 5.3'
+                    - description: 'Symfony 5.4'
                       php: '7.4'
-                      symfony: 5.3.*
+                      symfony: 5.4.*
                     - description: 'Symfony 5.4'
                       php: '8.0'
-                      symfony: 5.4.*@dev
+                      symfony: 5.4.*
                     - description: 'Symfony 6.0'
-                      php: '8.0'
-                      symfony: 6.0.*@dev
+                      php: '8.1'
+                      symfony: 6.0.*
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
@@ -41,7 +62,7 @@ jobs:
               if: contains(matrix.symfony, '@dev')
             - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
             - run: |
-                  sed -ri '/symfony\/swiftmailer-bundle/! s/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
+                  sed -ri 's/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
               if: matrix.symfony
             - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
             - run: vendor/bin/phpunit

@@ -27,7 +27,7 @@ final class BeelabRecaptcha2Extension extends Extension
         $loader->load('services.xml');
     }
 
-    private function getRequestMethod($requestMethod): string
+    private function getRequestMethod(string $requestMethod): string
     {
         switch ($requestMethod) {
             case 'curl_post':

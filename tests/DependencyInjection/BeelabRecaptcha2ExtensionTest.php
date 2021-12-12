@@ -24,10 +24,10 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
 
         $extension = new BeelabRecaptcha2Extension();
         $configs = [
-            ['request_method' => 'curl_post'],
-            ['site_key' => 'foo'],
-            ['secret' => 'bar'],
-            ['enabled' => true],
+            'one' => ['request_method' => 'curl_post'],
+            'two' => ['site_key' => 'foo'],
+            'three' => ['secret' => 'bar'],
+            'four' => ['enabled' => true],
         ];
         $extension->load($configs, $container);
         self::assertInstanceOf(BeelabRecaptcha2Extension::class, $extension);
@@ -45,10 +45,10 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
 
         $extension = new BeelabRecaptcha2Extension();
         $configs = [
-            ['request_method' => 'post'],
-            ['site_key' => 'foo'],
-            ['secret' => 'bar'],
-            ['enabled' => true],
+            'one' => ['request_method' => 'post'],
+            'two' => ['site_key' => 'foo'],
+            'three' => ['secret' => 'bar'],
+            'four' => ['enabled' => true],
         ];
         $extension->load($configs, $container);
         self::assertInstanceOf(BeelabRecaptcha2Extension::class, $extension);

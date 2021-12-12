@@ -3,6 +3,7 @@
 namespace Beelab\Recaptcha2Bundle\Recaptcha;
 
 use ReCaptcha\ReCaptcha;
+use ReCaptcha\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -48,6 +49,10 @@ class RecaptchaVerifier
             $request->request->has(self::GOOGLE_DEFAULT_INPUT)
         ) {
             $recaptchaValue = $request->request->get(self::GOOGLE_DEFAULT_INPUT);
+        }
+
+        if (null === $recaptchaValue || !is_string($recaptchaValue)) {
+            throw new RecaptchaException(new Response(false));
         }
 
         $response = $this->reCaptcha->verify($recaptchaValue, $request->getClientIp());

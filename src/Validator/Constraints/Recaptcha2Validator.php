@@ -19,12 +19,15 @@ final class Recaptcha2Validator extends ConstraintValidator
         $this->verifier = $verifier;
     }
 
+    /**
+     * @param string|null $value
+     * @param Recaptcha2  $constraint
+     */
     public function validate($value, Constraint $constraint): void
     {
         try {
             $this->verifier->verify($value);
         } catch (RecaptchaException $e) {
-            /* @var Recaptcha2 $constraint */
             $this->context->addViolation($constraint->message);
         }
     }

@@ -12,10 +12,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class RecaptchaVerifierTest extends TestCase
 {
+    /** @var \PHPUnit\Framework\MockObject\MockObject|ReCaptcha */
     protected $recaptcha;
 
+    /** @var \PHPUnit\Framework\MockObject\MockObject|Request */
     protected $request;
 
+    /** @var \PHPUnit\Framework\MockObject\MockObject|RequestStack */
     protected $stack;
 
     protected function setUp(): void

@@ -5,8 +5,3 @@ parameters:
 			count: 1
 			path: src/DependencyInjection/Configuration.php
 
-		-
-			message: "#^Else branch is unreachable because previous condition is always true\\.$#"
-			count: 1
-			path: src/Recaptcha/RecaptchaVerifier.php
-

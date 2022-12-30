@@ -18,8 +18,7 @@ final class Recaptcha2ValidatorTest extends TestCase
     /** @var RecaptchaVerifier|\PHPUnit\Framework\MockObject\MockObject */
     protected $verifier;
 
-    /** @var Recaptcha2Validator */
-    protected $validator;
+    protected Recaptcha2Validator $validator;
 
     protected function setUp(): void
     {

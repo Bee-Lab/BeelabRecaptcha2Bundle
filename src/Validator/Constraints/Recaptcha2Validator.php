@@ -9,25 +9,19 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 final class Recaptcha2Validator extends ConstraintValidator
 {
-    /**
-     * @var RecaptchaVerifier
-     */
-    private $verifier;
-
-    public function __construct(RecaptchaVerifier $verifier)
+    public function __construct(private RecaptchaVerifier $verifier)
     {
-        $this->verifier = $verifier;
     }
 
     /**
      * @param string|null $value
      * @param Recaptcha2  $constraint
      */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         try {
             $this->verifier->verify($value);
-        } catch (RecaptchaException $e) {
+        } catch (RecaptchaException) {
             $this->context->addViolation($constraint->message);
         }
     }

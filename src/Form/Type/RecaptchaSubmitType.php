@@ -11,12 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class RecaptchaSubmitType extends AbstractType
 {
-    /** @var string */
-    protected $siteKey;
-
-    public function __construct(string $siteKey)
+    public function __construct(private string $siteKey)
     {
-        $this->siteKey = $siteKey;
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void

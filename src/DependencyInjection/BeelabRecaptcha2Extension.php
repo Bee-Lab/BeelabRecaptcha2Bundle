@@ -6,6 +6,8 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use ReCaptcha\RequestMethod\CurlPost;
+use ReCaptcha\RequestMethod\Post;
 
 final class BeelabRecaptcha2Extension extends Extension
 {
@@ -29,12 +31,9 @@ final class BeelabRecaptcha2Extension extends Extension
 
     private function getRequestMethod(string $requestMethod): string
     {
-        switch ($requestMethod) {
-            case 'curl_post':
-                return 'ReCaptcha\RequestMethod\CurlPost';
-            case 'post':
-            default:
-                return 'ReCaptcha\RequestMethod\Post';
-        }
+        return match ($requestMethod) {
+            'curl_post' => CurlPost::class,
+            default => Post::class,
+        };
     }
 }

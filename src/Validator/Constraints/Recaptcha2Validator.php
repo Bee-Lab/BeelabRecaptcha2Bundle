@@ -9,7 +9,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 final class Recaptcha2Validator extends ConstraintValidator
 {
-    public function __construct(private RecaptchaVerifier $verifier)
+    public function __construct(private readonly RecaptchaVerifier $verifier)
     {
     }
 

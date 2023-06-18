@@ -13,9 +13,9 @@ class RecaptchaVerifier
     private const GOOGLE_DEFAULT_INPUT = 'g-recaptcha-response';
 
     public function __construct(
-        private ReCaptcha $reCaptcha,
-        private RequestStack $requestStack,
-        private bool $enabled = true,
+        private readonly ReCaptcha $reCaptcha,
+        private readonly RequestStack $requestStack,
+        private readonly bool $enabled = true,
     ) {
     }
 

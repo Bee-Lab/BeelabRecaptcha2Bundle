@@ -73,4 +73,22 @@ final class RecaptchaVerifierTest extends TestCase
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack);
         $verifier->verify('captcha-response');
     }
+
+    public function testVerifyRecaptchaValueSubmitted(): void
+    {
+        $this->expectException(RecaptchaException::class);
+
+        $request = new Request();
+        $request->request->set('g-recaptcha-response', []);
+
+        if (\is_callable([$this->stack, 'getMainRequest'])) {
+            $this->stack->expects(self::once())->method('getMainRequest')->willReturn($request);
+        } else {
+            $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($request);
+        }
+        $this->request->expects(self::never())->method('getClientIp');
+
+        $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack);
+        $verifier->verify();
+    }
 }

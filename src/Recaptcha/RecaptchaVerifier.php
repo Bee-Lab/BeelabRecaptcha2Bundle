@@ -4,6 +4,7 @@ namespace Beelab\Recaptcha2Bundle\Recaptcha;
 
 use ReCaptcha\ReCaptcha;
 use ReCaptcha\Response;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -30,7 +31,11 @@ class RecaptchaVerifier
         // If empty, we use the default input drawn by google JS we need to get
         // the value with hardcoded variable
         if (empty($recaptchaValue) && $request->request->has(self::GOOGLE_DEFAULT_INPUT)) {
-            $recaptchaValue = $request->request->get(self::GOOGLE_DEFAULT_INPUT);
+            try {
+                $recaptchaValue = $request->request->get(self::GOOGLE_DEFAULT_INPUT);
+            } catch (BadRequestException) {
+                throw new RecaptchaException(new Response(false));
+            }
         }
 
         if (!is_string($recaptchaValue)) {

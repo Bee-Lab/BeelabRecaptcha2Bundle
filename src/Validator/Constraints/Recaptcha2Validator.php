@@ -22,7 +22,10 @@ final class Recaptcha2Validator extends ConstraintValidator
         try {
             $this->verifier->verify($value);
         } catch (RecaptchaException) {
-            $this->context->addViolation($constraint->message);
+            $this->context
+                ->buildViolation($constraint->message)
+                ->setCode(Recaptcha2::INVALID_RECAPTCHA_ERROR)
+                ->addViolation();
         }
     }
 }

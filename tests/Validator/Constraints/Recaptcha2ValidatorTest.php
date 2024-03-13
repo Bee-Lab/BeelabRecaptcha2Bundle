@@ -36,7 +36,7 @@ final class Recaptcha2ValidatorTest extends TestCase
         $exception = new RecaptchaException($response);
         $constraint = new Recaptcha2();
         $this->verifier->expects(self::once())->method('verify')->will(self::throwException($exception));
-        $this->context->expects(self::once())->method('addViolation');
+        $this->context->expects(self::once())->method('buildViolation');
 
         $this->validator->validate('dummy', $constraint);
     }
@@ -45,7 +45,7 @@ final class Recaptcha2ValidatorTest extends TestCase
     {
         $constraint = new Recaptcha2();
         $this->verifier->expects(self::once())->method('verify');
-        $this->context->expects(self::never())->method('addViolation');
+        $this->context->expects(self::never())->method('buildViolation');
 
         $this->validator->validate('dummy', $constraint);
     }
@@ -54,7 +54,7 @@ final class Recaptcha2ValidatorTest extends TestCase
     {
         $constraint = new Recaptcha2();
         $this->verifier->expects(self::once())->method('verify');
-        $this->context->expects(self::never())->method('addViolation');
+        $this->context->expects(self::never())->method('buildViolation');
 
         $this->validator->validate(null, $constraint);
     }

@@ -26,8 +26,7 @@ final class TwigFormPassTest extends TestCase
         $builder = $this->createMock(ContainerBuilder::class);
         $definition = $this->createMock(Definition::class);
 
-        $builder->expects($this->at(0))->method('hasDefinition')->willReturn(false);
-        $builder->expects($this->at(1))->method('hasDefinition')->willReturn(true);
+        $builder->expects($this->exactly(2))->method('hasDefinition')->willReturn(false, true);
         $builder->expects($this->once())->method('getDefinition')->willReturn($definition);
         $builder->expects($this->once())->method('hasParameter')->willReturn(false);
         $definition->method('addMethodCall');

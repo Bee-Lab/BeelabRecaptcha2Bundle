@@ -30,22 +30,14 @@ final class RecaptchaVerifierTest extends TestCase
 
     public function testVerifyDisabled(): void
     {
-        if (\is_callable([$this->stack, 'getMainRequest'])) {
-            $this->stack->expects(self::never())->method('getMainRequest');
-        } else {
-            $this->stack->expects(self::never())->method('getMasterRequest');
-        }
+        $this->stack->expects(self::never())->method('getMainRequest');
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack, false);
         $verifier->verify('captcha-response');
     }
 
     public function testVerifySuccess(): void
     {
-        if (\is_callable([$this->stack, 'getMainRequest'])) {
-            $this->stack->expects(self::once())->method('getMainRequest')->willReturn($this->request);
-        } else {
-            $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($this->request);
-        }
+        $this->stack->expects(self::once())->method('getMainRequest')->willReturn($this->request);
         $this->request->expects(self::once())->method('getClientIp')->willReturn('127.0.0.1');
         $response = $this->createMock(Response::class);
         $response->expects(self::once())->method('isSuccess')->willReturn(true);
@@ -59,11 +51,7 @@ final class RecaptchaVerifierTest extends TestCase
     {
         $this->expectException(RecaptchaException::class);
 
-        if (\is_callable([$this->stack, 'getMainRequest'])) {
-            $this->stack->expects(self::once())->method('getMainRequest')->willReturn($this->request);
-        } else {
-            $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($this->request);
-        }
+        $this->stack->expects(self::once())->method('getMainRequest')->willReturn($this->request);
         $this->request->expects(self::once())->method('getClientIp')->willReturn('127.0.0.1');
         $response = $this->createMock(Response::class);
         $response->expects(self::once())->method('isSuccess')->willReturn(false);
@@ -76,16 +64,16 @@ final class RecaptchaVerifierTest extends TestCase
 
     public function testVerifyRecaptchaValueSubmitted(): void
     {
+        if (PHP_VERSION_ID < 80200) {
+            self::markTestSkipped('Avoid notice.');
+        }
+
         $this->expectException(RecaptchaException::class);
 
         $request = new Request();
         $request->request->set('g-recaptcha-response', []);
 
-        if (\is_callable([$this->stack, 'getMainRequest'])) {
-            $this->stack->expects(self::once())->method('getMainRequest')->willReturn($request);
-        } else {
-            $this->stack->expects(self::once())->method('getMasterRequest')->willReturn($request);
-        }
+        $this->stack->expects(self::once())->method('getMainRequest')->willReturn($request);
         $this->request->expects(self::never())->method('getClientIp');
 
         $verifier = new RecaptchaVerifier($this->recaptcha, $this->stack);

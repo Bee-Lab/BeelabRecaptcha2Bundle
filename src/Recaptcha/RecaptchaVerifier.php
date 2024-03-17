@@ -33,8 +33,8 @@ class RecaptchaVerifier
         if (empty($recaptchaValue) && $request->request->has(self::GOOGLE_DEFAULT_INPUT)) {
             try {
                 $recaptchaValue = $request->request->get(self::GOOGLE_DEFAULT_INPUT);
-            } catch (BadRequestException) {
-                throw new RecaptchaException(new Response(false));
+            } catch (BadRequestException $exception) {
+                throw new RecaptchaException(new Response(false), $exception);
             }
         }
 

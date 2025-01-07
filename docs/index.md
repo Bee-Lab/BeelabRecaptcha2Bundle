@@ -1,24 +1,22 @@
-BeelabRecaptcha2Bundle
-======================
+# BeelabRecaptcha2Bundle
 
-1. [Installation](#1-installation)
-2. [Configuration](#2-configuration)
-3. [Usage](#3-usage)
-4. [Customization](#4-customization)
+## 1. Installation
 
-### 1. Installation
-
-Run from terminal:
+Run from the terminal:
 
 ```bash
-$ composer require beelab/recaptcha2-bundle
+composer require beelab/recaptcha2-bundle
 ```
 
-Bundle is automatically enabled by Flex.
+Flex automatically enables the bundle.
 
-### 2. Configuration
+If Flex asks you to execute the recipe from `google\recaptcha`, answer "no". If you mistakenly answer "yes" instead,
+remove the service configuration created by that recipe, since it would be a duplication of the service defined
+by this bundle.
 
-Add following lines in your configuration:
+## 2. Configuration
+
+Add the following lines to your configuration:
 
 ```yaml
 # config/packages/beelab_recaptcha2.yaml
@@ -28,9 +26,9 @@ beelab_recaptcha2:
     secret: '%env(APP_RECAPTCHA_SECRET)%'
 ```
 
-You should define `APP_RECAPTCHA_SITE_KEY` and `APP_RECAPTCHA_SECRET` in your environment variabiles.
+You should define `APP_RECAPTCHA_SITE_KEY` and `APP_RECAPTCHA_SECRET` in your environment variables.
 
-Since you cannot use a CAPTCHA in a test, you also should add following lines in your test configuration:
+Since you cannot use a CAPTCHA in a test, you also should add the following lines in your test configuration:
 
 ```yaml
 # config/packages/test/beelab_recaptcha2.yaml
@@ -54,9 +52,9 @@ beelab_recaptcha2:
 
 Otherwise, the default value `post` will be used.
 
-### 3. Usage
+## 3. Usage
 
-In your form, use `Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType` form type, as any other Symfony form types.
+In your form, use `Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType` form type, as any other Symfony form type.
 Example:
 
 ```php
@@ -97,7 +95,7 @@ class RegistrationType extends AbstractType
 
 As you can see, you can pass an array of validation groups to `Recaptcha2` constraint.
 For example, if you use it with registration in FOSUserBundle, you should use the
-"Registration" group. If you don't use groups, you should remove such option.
+"Registration" group. If you don't use groups, you should remove such an option.
 
 In your template (likely in your main layout file), include a line like the following:
 
@@ -113,13 +111,13 @@ For example, you can use the following in a Twig template, to get the currently 
 <script src="//www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
 ```
 
-### 4. Customization
+## 4. Customization
 
-If you want to customize the render of Recaptcha widget, just override `beelab_recaptcha2_widget`
+If you want to customize the rendering of Recaptcha widget, just override `beelab_recaptcha2_widget`
 widget in one of your form themes.
-For example, suppose you want to display the compact version of the widget, and suppose that
+For example, suppose you want to display the compact version of the widget and suppose that
 you configured a `_form_theme.html.twig` file under `form_themes` option of `twig` configuration.
-You can add to `_form_theme.html.twig` file the following lines:
+You can add to your `_form_theme.html.twig` file the following lines:
 
 ```html+jinja
 {% block beelab_recaptcha2_widget -%}

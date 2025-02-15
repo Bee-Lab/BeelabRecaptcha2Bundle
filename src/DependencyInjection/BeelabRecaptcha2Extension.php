@@ -2,12 +2,12 @@
 
 namespace Beelab\Recaptcha2Bundle\DependencyInjection;
 
+use ReCaptcha\RequestMethod\CurlPost;
+use ReCaptcha\RequestMethod\Post;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader;
-use ReCaptcha\RequestMethod\CurlPost;
-use ReCaptcha\RequestMethod\Post;
 
 final class BeelabRecaptcha2Extension extends Extension
 {

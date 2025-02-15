@@ -38,7 +38,7 @@ class RecaptchaVerifier
             }
         }
 
-        if (!is_string($recaptchaValue)) {
+        if (!\is_string($recaptchaValue)) {
             throw new RecaptchaException(new Response(false));
         }
 

@@ -68,7 +68,7 @@ jobs:
               if: contains(matrix.symfony, '@dev')
             - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
             - run: |
-                  sed -ri 's/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
+                  sed -ri 's/"symfony\/(config|dependency-injection|form|http-kernel|validator)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
               if: matrix.symfony
             - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
             - name: Run tests

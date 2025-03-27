@@ -10,6 +10,11 @@
             <argument>%beelab_recaptcha2.secret%</argument>
             <argument type="service" id="beelab_recaptcha2.google_recaptcha.request_method" />
         </service>
+        <service id="Beelab\Recaptcha2Bundle\Recaptcha\SymfonyClientRequestMethod" public="false">
+            <call method="setClient">
+                <argument type="service" id="Symfony\Contracts\HttpClient\HttpClientInterface" on-invalid="ignore"/>
+            </call>
+        </service>
         <service id="beelab_recaptcha2.type" class="Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType" public="true">
             <argument>%beelab_recaptcha2.site_key%</argument>
             <tag name="form.type" alias="beelab_recaptcha2" />

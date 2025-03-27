@@ -14,7 +14,7 @@ final class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->enumNode('request_method')
-                    ->values(['curl_post', 'post'])
+                    ->values(['curl_post', 'post', 'http_client'])
                     ->defaultValue('post')
                 ->end()
                 ->scalarNode('site_key')

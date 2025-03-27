@@ -2,6 +2,7 @@
 
 namespace Beelab\Recaptcha2Bundle\DependencyInjection;
 
+use Beelab\Recaptcha2Bundle\Recaptcha\SymfonyClientRequestMethod;
 use ReCaptcha\RequestMethod\CurlPost;
 use ReCaptcha\RequestMethod\Post;
 use Symfony\Component\Config\FileLocator;
@@ -30,6 +31,7 @@ final class BeelabRecaptcha2Extension extends Extension
     {
         return match ($requestMethod) {
             'curl_post' => CurlPost::class,
+            'http_client' => SymfonyClientRequestMethod::class,
             default => Post::class,
         };
     }

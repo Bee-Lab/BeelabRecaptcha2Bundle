@@ -40,17 +40,21 @@ beelab_recaptcha2:
 If your PHP environment has restrictions about `file_get_contents()` making HTTP requests,
 you can use another `RequestMethod` from Google's Recaptcha library.
 
-Currently, this bundle supports the default `Post` and `CurlPost` methods.
-You can use the latter by adding in your `config.yml`:
+Currently, this bundle supports the default `Post` and `CurlPost` methods, and an additional
+method leveraging the [Symfony HTTP Client][1].
+You can define it by adding in your configuration:
 
 ```yaml
 # config/packages/beelab_recaptcha2.yaml
 
 beelab_recaptcha2:
-    request_method: curl_post
+    request_method: curl_post # or http_client
 ```
 
 Otherwise, the default value `post` will be used.
+
+If you want to use the `http_client` request method, you need to require `symfony/http-client`.
+
 
 ## 3. Usage
 
@@ -125,3 +129,4 @@ You can add to your `_form_theme.html.twig` file the following lines:
 {%- endblock %}
 ```
 
+[1]: https://symfony.com/doc/current/http_client.html

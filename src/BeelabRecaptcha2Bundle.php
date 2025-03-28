@@ -2,6 +2,7 @@
 
 namespace Beelab\Recaptcha2Bundle;
 
+use Beelab\Recaptcha2Bundle\DependencyInjection\Compiler\RequestMethodPass;
 use Beelab\Recaptcha2Bundle\DependencyInjection\Compiler\TwigFormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -12,6 +13,7 @@ final class BeelabRecaptcha2Bundle extends Bundle
     {
         parent::build($container);
         $container->addCompilerPass(new TwigFormPass());
+        $container->addCompilerPass(new RequestMethodPass());
     }
 
     public function getPath(): string

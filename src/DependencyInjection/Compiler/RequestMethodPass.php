@@ -11,7 +11,12 @@ final class RequestMethodPass implements CompilerPassInterface
     {
         $service = $container->getDefinition('beelab_recaptcha2.google_recaptcha');
         $methodClass = $container->getParameter('beelab_recaptcha2.request_method');
-        $methodService = $container->getDefinition($methodClass);
+        if ($container->hasDefinition($methodClass)) {
+            $methodService = $container->getDefinition($methodClass);
+        } else {
+            $methodService = $container->register($methodClass, $methodClass);
+            $methodService->setPublic(false);
+        }
         $service->replaceArgument(1, $methodService);
     }
 }

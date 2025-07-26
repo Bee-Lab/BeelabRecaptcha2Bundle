@@ -1,8 +1,10 @@
 name: build
 
 on:
+    push:
+        branches:
+            - master
     pull_request: ~
-    push: ~
 
 jobs:
     phpstan:
@@ -33,22 +35,22 @@ jobs:
             fail-fast: false
             matrix:
                 include:
-                    - description: 'Symfony 6.4'
+                    - description: 'Symfony 6.0'
                       php: '8.1'
                       composer_option: '--prefer-lowest'
                       max_deprecations: 0
                     - description: 'Symfony 6.4'
                       php: '8.2'
-                      symfony: 6.3.*
+                      symfony: 6.4.*
                       max_deprecations: 0
-                    - description: 'Symfony 7.1'
+                    - description: 'Symfony 7.3'
                       php: '8.3'
-                      symfony: 7.1.*
+                      symfony: 7.3.*
                       max_deprecations: 0
-                    - description: 'Symfony 7.2'
+                    - description: 'Symfony 8.0'
                       php: '8.4'
-                      symfony: 7.2.*
-                      max_deprecations: 1
+                      symfony: 8.0.*@dev
+                      max_deprecations: 0
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
@@ -66,21 +68,12 @@ jobs:
                   composer config minimum-stability dev
                   composer config prefer-stable true
               if: contains(matrix.symfony, '@dev')
-            - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
             - run: |
                   sed -ri 's/"symfony\/(config|dependency-injection|form|http-kernel|validator)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
               if: matrix.symfony
             - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
             - name: Run tests
-              run: vendor/bin/phpunit --coverage-clover=clover.xml
+              run: vendor/bin/phpunit --colors=always --coverage-clover=clover.xml
               env:
-                 SYMFONY_DEPRECATIONS_HELPER: max[self]=${{matrix.max_deprecations}}
-            - name: Code Climate Test Reporter
-              uses: aktions/codeclimate-test-reporter@v1
-              if: ${{ github.event_name != 'pull_request' && matrix.php == '8.4' }}
-              with:
-                  codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
-                  command: after-build --coverage-input-type clover
-            - uses: codecov/codecov-action@v1
-              with:
-                  files: ./clover.xml
+                  SYMFONY_DEPRECATIONS_HELPER: max[self]=${{matrix.max_deprecations}}
+

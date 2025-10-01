@@ -8,7 +8,7 @@ use ReCaptcha\RequestMethod\Post;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 final class BeelabRecaptcha2Extension extends Extension
 {
@@ -23,8 +23,8 @@ final class BeelabRecaptcha2Extension extends Extension
         $requestMethodClass = $this->getRequestMethod($config['request_method']);
         $container->setParameter('beelab_recaptcha2.request_method', $requestMethodClass);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
-        $loader->load('services.xml');
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../../config'));
+        $loader->load('services.php');
     }
 
     private function getRequestMethod(string $requestMethod): string

@@ -23,8 +23,8 @@ final class BeelabRecaptcha2Extension extends Extension
         $requestMethodClass = $this->getRequestMethod($config['request_method']);
         $container->setParameter('beelab_recaptcha2.request_method', $requestMethodClass);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
-        $loader->load('services.xml');
+        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__.'/../../config'));
+        $loader->load('services.php');
     }
 
     private function getRequestMethod(string $requestMethod): string

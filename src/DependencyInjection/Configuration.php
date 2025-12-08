@@ -11,7 +11,7 @@ final class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('beelab_recaptcha2');
         $rootNode = $treeBuilder->getRootNode();
-        $rootNode
+        $rootNode   // @phpstan-ignore-line method.notFound
             ->children()
                 ->enumNode('request_method')
                     ->values(['curl_post', 'post', 'http_client'])

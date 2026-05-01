@@ -14,9 +14,9 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
 {
     public function testLoadSetParameters(): void
     {
-        /** @var ContainerBuilder|\PHPUnit\Framework\MockObject\MockObject $container */
+        /** @var ContainerBuilder&\PHPUnit\Framework\MockObject\MockObject $container */
         $container = $this->createMock(ContainerBuilder::class);
-        /** @var ParameterBag|\PHPUnit\Framework\MockObject\MockObject $parameterBag */
+        /** @var ParameterBag&\PHPUnit\Framework\MockObject\MockObject $parameterBag */
         $parameterBag = $this->createMock(ParameterBag::class);
 
         $parameterBag->method('add');
@@ -35,9 +35,9 @@ final class BeelabRecaptcha2ExtensionTest extends TestCase
 
     public function testLoadSetParametersPost(): void
     {
-        /** @var ContainerBuilder|\PHPUnit\Framework\MockObject\MockObject $container */
+        /** @var ContainerBuilder&\PHPUnit\Framework\MockObject\MockObject $container */
         $container = $this->createMock(ContainerBuilder::class);
-        /** @var ParameterBag|\PHPUnit\Framework\MockObject\MockObject $parameterBag */
+        /** @var ParameterBag&\PHPUnit\Framework\MockObject\MockObject $parameterBag */
         $parameterBag = $this->createMock(ParameterBag::class);
 
         $parameterBag->method('add');

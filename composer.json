@@ -29,6 +29,9 @@
         "symfony/http-client-contracts": "^3.5",
         "symfony/phpunit-bridge": "^7.4"
     },
+    "conflict": {
+        "google/recaptcha": "1.5.0"
+    },
     "suggest": {
         "symfony/twig-bundle": "To render widget. Minimum supported Twig version is 2.4"
     },

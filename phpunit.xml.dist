@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/schema/10.5.xsd"
     colors="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
     beStrictAboutTestsThatDoNotTestAnything="false"
     bootstrap="vendor/autoload.php"
 >
     <testsuites>
         <testsuite name="BeelabRecaptcha2Bundle test suite">
-            <directory suffix="Test.php">tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
-    <coverage>
+    <source>
         <include>
             <directory>src</directory>
         </include>
-    </coverage>
+    </source>
 </phpunit>

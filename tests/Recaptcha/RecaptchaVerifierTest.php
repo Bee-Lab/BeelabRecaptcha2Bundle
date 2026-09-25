@@ -64,10 +64,6 @@ final class RecaptchaVerifierTest extends TestCase
 
     public function testVerifyRecaptchaValueSubmitted(): void
     {
-        if (\PHP_VERSION_ID < 80200) {
-            self::markTestSkipped('Avoid notice.');
-        }
-
         $this->expectException(RecaptchaException::class);
 
         $request = new Request();

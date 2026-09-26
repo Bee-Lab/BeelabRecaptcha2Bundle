@@ -36,13 +36,9 @@ jobs:
             matrix:
                 include:
                     - description: 'Symfony 6.4'
-                      php: '8.1'
-                      symfony: 6.4.*
-                      dependencies: lowest
-                      max_deprecations: 0
-                    - description: 'Symfony 6.4'
                       php: '8.2'
                       symfony: 6.4.*
+                      dependencies: lowest
                       max_deprecations: 0
                     - description: 'Symfony 7.4'
                       php: '8.3'
@@ -54,7 +50,11 @@ jobs:
                       max_deprecations: 0
                     - description: 'Symfony 8.1'
                       php: '8.5'
-                      symfony: 8.1.*@dev
+                      symfony: 8.1.*
+                      max_deprecations: 0
+                    - description: 'Symfony 8.2'
+                      php: '8.6'
+                      symfony: 8.2.*@dev
                       max_deprecations: 0
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
